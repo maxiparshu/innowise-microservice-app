@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="154f2eba-a5fd-409a-b4a5-262077755a85" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/entity/PaymentCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userservice/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/userservice/src/main/resources/db/changelog/db.create-tables.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/specification/UserSpecification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c30f46b7-adc6-4ea1-b7aa-1a03571f7c4a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c30f46b7-adc6-4ea1-b7aa-1a03571f7c4a.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c30f46b7-adc6-4ea1-b7aa-1a03571f7c4a/storage_v2/_src_/database/userdb.iTErzg/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c30f46b7-adc6-4ea1-b7aa-1a03571f7c4a/storage_v2/_src_/database/userdb.iTErzg/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/repository/PaymentCardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/repository/PaymentCardRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,12 +46,16 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -163,7 +160,7 @@
       <updated>1779033931094</updated>
       <workItem from="1779033932050" duration="1764000" />
       <workItem from="1779042785105" duration="6562000" />
-      <workItem from="1779052871922" duration="761000" />
+      <workItem from="1779052871922" duration="3506000" />
     </task>
     <servers />
   </component>
