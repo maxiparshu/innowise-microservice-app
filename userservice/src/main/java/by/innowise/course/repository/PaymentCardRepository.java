@@ -1,6 +1,8 @@
 package by.innowise.course.repository;
 
 import by.innowise.course.entity.PaymentCard;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -8,21 +10,24 @@ import java.util.List;
 
 public interface PaymentCardRepository extends JpaRepository<PaymentCard, Long> {
 
-    List<PaymentCard> findAllByUserId(Long userId);
-
     long countByUserId(Long userId);
-    @Query("""
-       SELECT pc
-       FROM PaymentCard pc
-       WHERE pc.expirationDate < CURRENT_DATE
-       """)
-    List<PaymentCard> findExpiredCards();
 
-    @Query(value = """
-               SELECT *
-               FROM payment_cards
-               ORDER BY created_at DESC
-               LIMIT 10
-               """, nativeQuery = true)
-    List<PaymentCard> findLastCreatedCards();
+    List<PaymentCard> findByUserId(Long id);
+
+    @Query("""
+            SELECT pc
+            FROM PaymentCard pc
+            WHERE pc.active = true
+            """)
+    Page<PaymentCard> findActiveCards(Pageable pageable);
+
+    @Query(
+            value = """
+                    SELECT *
+                    FROM payment_cards
+                    WHERE expiration_date <= CURRENT_DATE + INTERVAL '30 days'
+                    """,
+            nativeQuery = true
+    )
+    Page<PaymentCard> findCardsExpiringSoon(Pageable pageable);
 }
