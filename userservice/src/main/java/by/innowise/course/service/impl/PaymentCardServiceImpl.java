@@ -12,6 +12,7 @@ import by.innowise.course.repository.PaymentCardRepository;
 import by.innowise.course.repository.UserRepository;
 import by.innowise.course.service.PaymentCardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -26,29 +27,31 @@ public class PaymentCardServiceImpl implements PaymentCardService {
     private final PaymentCardRepository paymentCardRepository;
     private final PaymentCardMapper paymentCardMapper;
     private final UserRepository userRepository;
+    private final CacheManager cacheManager;
 
     @Override
     @Transactional
     public PaymentCardResponseDto create(Long userId, PaymentCardRequestDto dto) {
-        long cardsCount =
-                paymentCardRepository.countByUserId(userId);
+        User user = userRepository.findByIdForUpdate(userId)
+                .orElseThrow(()
+                        -> new UserNotFoundException(userId));
+
+        long cardsCount = paymentCardRepository.countByUserId(userId);
 
         if (cardsCount >= 5) {
             throw new UserCardsLimitExceededException();
         }
-
-        User user = userRepository.findById(userId)
-                .orElseThrow(()
-                        -> new UserNotFoundException(userId));
 
         PaymentCard card =
                 paymentCardMapper.toEntity(dto);
 
         card.setUser(user);
 
-        return paymentCardMapper.toDto(
-                paymentCardRepository.save(card)
-        );
+        PaymentCard savedCard = paymentCardRepository.save(card);
+
+        evictUserCache(userId);
+
+        return paymentCardMapper.toDto(savedCard);
     }
 
     @Override
@@ -105,7 +108,11 @@ public class PaymentCardServiceImpl implements PaymentCardService {
         card.setHolder(dto.getHolder());
         card.setExpirationDate(dto.getExpirationDate());
 
-        return paymentCardMapper.toDto(paymentCardRepository.save(card));
+        PaymentCard saved = paymentCardRepository.save(card);
+
+        evictUserCache(saved.getUser().getId());
+
+        return paymentCardMapper.toDto(saved);
     }
 
     @Override
@@ -113,11 +120,13 @@ public class PaymentCardServiceImpl implements PaymentCardService {
     public void activate(Long id) {
         PaymentCard paymentCard = paymentCardRepository.findById(id)
                 .orElseThrow(()
-                        -> new UserNotFoundException(id)
+                        -> new PaymentCardNotFoundException(id)
                 );
 
         paymentCard.setActive(true);
-        paymentCardRepository.save(paymentCard);
+        PaymentCard saved = paymentCardRepository.save(paymentCard);
+
+        evictUserCache(saved.getUser().getId());
     }
 
     @Override
@@ -125,11 +134,13 @@ public class PaymentCardServiceImpl implements PaymentCardService {
     public void deactivate(Long id) {
         PaymentCard paymentCard = paymentCardRepository.findById(id)
                 .orElseThrow(()
-                        -> new UserNotFoundException(id)
+                        -> new PaymentCardNotFoundException(id)
                 );
 
         paymentCard.setActive(false);
-        paymentCardRepository.save(paymentCard);
+        PaymentCard saved = paymentCardRepository.save(paymentCard);
+
+        evictUserCache(saved.getUser().getId());
     }
 
 
@@ -137,9 +148,19 @@ public class PaymentCardServiceImpl implements PaymentCardService {
     @Transactional
     public void delete(Long id) {
         PaymentCard card = paymentCardRepository.findById(id)
-                .orElseThrow(()
-                        -> new PaymentCardNotFoundException(id));
+                .orElseThrow(() -> new PaymentCardNotFoundException(id));
+
+        Long userId = card.getUser().getId();
 
         paymentCardRepository.delete(card);
+
+        evictUserCache(userId);
+    }
+
+    private void evictUserCache(Long userId) {
+        var cache = cacheManager.getCache("users");
+        if (cache != null) {
+            cache.evict(userId);
+        }
     }
 }

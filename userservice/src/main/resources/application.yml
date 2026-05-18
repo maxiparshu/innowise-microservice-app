@@ -15,5 +15,12 @@ spring:
     change-log: classpath:db/changelog/db.create-tables.yaml
     enabled: true
 
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  cache:
+    type: redis
 server:
   port: 8001

@@ -2,11 +2,12 @@ package by.innowise.course.dto;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
-public class PaymentCardResponseDto {
+public class PaymentCardResponseDto implements Serializable {
 
     private Long id;
 
@@ -17,8 +18,6 @@ public class PaymentCardResponseDto {
     private LocalDate expirationDate;
 
     private Boolean active;
-
-    private Long userId;
 
     private LocalDateTime createdAt;
 

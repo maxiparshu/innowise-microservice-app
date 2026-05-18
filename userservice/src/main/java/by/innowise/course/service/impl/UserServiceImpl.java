@@ -10,6 +10,9 @@ import by.innowise.course.repository.UserRepository;
 import by.innowise.course.service.UserService;
 import by.innowise.course.specification.UserSpecification;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -25,7 +28,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-
     @Override
     @Transactional
     public UserResponseDto create(UserRequestDto dto) {
@@ -38,6 +40,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(
+            value = "users",
+            key = "#id"
+    )
     public UserResponseDto readById(Long id) {
         User user = userRepository.findById(id).orElseThrow(()
                 -> new UserNotFoundException(id)
@@ -74,6 +80,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    @CachePut(
+            value = "users",
+            key = "#id"
+    )
     public UserResponseDto update(
             Long id,
             UserRequestDto dto
@@ -83,7 +93,11 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(()
                         -> new UserNotFoundException(id)
                 );
-
+        if (!user.getEmail().equals(dto.getEmail())) {
+            if (userRepository.existsByEmail(dto.getEmail())) {
+                throw new UserWithEmailAlreadyExistException(dto.getEmail());
+            }
+        }
         user.setName(dto.getName());
         user.setSurname(dto.getSurname());
         user.setBirthDate(dto.getBirthDate());
@@ -95,7 +109,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void activate(Long id) {
+    @CachePut(
+            value = "users",
+            key = "#id"
+    )
+    public UserResponseDto activate(Long id) {
 
         User user = userRepository.findById(id)
                 .orElseThrow(()
@@ -103,12 +121,16 @@ public class UserServiceImpl implements UserService {
                 );
 
         user.setActive(true);
-        userRepository.save(user);
+        return userMapper.toDto(userRepository.save(user));
     }
 
     @Override
     @Transactional
-    public void deactivate(Long id) {
+    @CachePut(
+            value = "users",
+            key = "#id"
+    )
+    public UserResponseDto deactivate(Long id) {
 
         User user = userRepository.findById(id)
                 .orElseThrow(()
@@ -116,11 +138,15 @@ public class UserServiceImpl implements UserService {
                 );
 
         user.setActive(false);
-        userRepository.save(user);
+        return userMapper.toDto(userRepository.save(user));
     }
 
     @Override
     @Transactional
+    @CacheEvict(
+            value = "users",
+            key = "#id"
+    )
     public void delete(Long id) {
         userRepository.findById(id)
                 .orElseThrow(()
@@ -128,4 +154,5 @@ public class UserServiceImpl implements UserService {
                 );
         userRepository.deleteById(id);
     }
+
 }
