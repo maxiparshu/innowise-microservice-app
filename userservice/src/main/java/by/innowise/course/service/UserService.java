@@ -26,9 +26,9 @@ public interface UserService {
             UserRequestDto dto
     );
 
-    UserResponseDto activate(Long id);
+    void activate(Long id);
 
-    UserResponseDto deactivate(Long id);
+    void deactivate(Long id);
 
     void delete(Long id);
 }

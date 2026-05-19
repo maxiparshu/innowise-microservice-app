@@ -16,9 +16,11 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long>
         , JpaSpecificationExecutor<User> {
     boolean existsByEmail(String email);
+
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select u from User u where u.id = :id")
     Optional<User> findByIdForUpdate(Long id);
+
     @Query("""
             SELECT u
             FROM User u

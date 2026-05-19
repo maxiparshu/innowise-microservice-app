@@ -11,7 +11,6 @@ import org.mapstruct.Mapping;
         uses = PaymentCardMapper.class
 )
 public interface UserMapper {
-
     User toEntity(UserRequestDto dto);
 
     @Mapping(target = "cards", source = "paymentCards")

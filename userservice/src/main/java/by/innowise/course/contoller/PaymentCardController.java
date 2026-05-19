@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Validated
 @RestController
-@RequestMapping("/apiv1/cards")
+@Validated
+@RequestMapping("/api/v1/cards")
 @RequiredArgsConstructor
 public class PaymentCardController {
 
     private final PaymentCardService paymentCardService;
 
-    @PostMapping("/create/{userId}")
+    @PostMapping("/{userId}")
     @ResponseStatus(HttpStatus.CREATED)
     public PaymentCardResponseDto create(
             @PathVariable
@@ -46,7 +46,7 @@ public class PaymentCardController {
         return paymentCardService.readById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public Page<PaymentCardResponseDto> readAll(
             @RequestParam(defaultValue = "0")
             int page,
@@ -69,7 +69,7 @@ public class PaymentCardController {
         return paymentCardService.readAllByUserId(userId);
     }
 
-    @GetMapping("/read-active")
+    @GetMapping("/active")
     public Page<PaymentCardResponseDto> readActiveCards(
             @RequestParam(defaultValue = "0")
             int page,
@@ -83,7 +83,7 @@ public class PaymentCardController {
         );
     }
 
-    @GetMapping("/read-expiring-soon")
+    @GetMapping("/expiring-soon")
     public Page<PaymentCardResponseDto> readCardsExpiringSoon(
             @RequestParam(defaultValue = "0")
             int page,
@@ -97,7 +97,7 @@ public class PaymentCardController {
         );
     }
 
-    @PutMapping("/{id}/update")
+    @PutMapping("/{id}")
     public PaymentCardResponseDto update(
             @PathVariable
             @Positive(message = "Card id must be positive")

@@ -5,18 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="154f2eba-a5fd-409a-b4a5-262077755a85" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/userservice/src/test/java/by/innowise/course/service/impl/UserServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c30f46b7-adc6-4ea1-b7aa-1a03571f7c4a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c30f46b7-adc6-4ea1-b7aa-1a03571f7c4a.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userservice/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/UserServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/UserServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/dto/PaymentCardResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/dto/PaymentCardResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/dto/UserResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/dto/UserResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/contoller/PaymentCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/contoller/PaymentCardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/contoller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/contoller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/dto/PaymentCardRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/dto/PaymentCardRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/exception/PaymentCardNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/exception/PaymentCardNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/exception/UserCardsLimitExceededException.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/exception/UserCardsLimitExceededException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/exception/UserNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/exception/UserNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/exception/UserWithEmailAlreadyExistException.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/exception/UserWithEmailAlreadyExistException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/mapper/PaymentCardMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/mapper/PaymentCardMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/service/PaymentCardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/service/PaymentCardService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/service/impl/PaymentCardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/service/impl/PaymentCardServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +57,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -59,9 +65,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -74,6 +80,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Build microservice.executor": "Run",
+    "Gradle.PaymentCardServiceImplTest.shouldCreateCardSuccessfully.executor": "Run",
+    "Gradle.PaymentCardServiceImplTest.shouldThrowWhenCardNotFound.executor": "Run",
+    "Gradle.Tests in 'by.innowise.course.service.impl'.executor": "Coverage",
+    "Gradle.UserServiceImplTest.executor": "Run",
+    "Gradle.UserServiceImplTest.shouldCreateUser (1).executor": "Run",
+    "Gradle.UserServiceImplTest.shouldCreateUser.executor": "Run",
+    "Gradle.UserServiceImplTest.shouldReadAllUsersWithSpecification.executor": "Run",
     "Gradle.microservice [dependencies].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -82,16 +95,21 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.UserServiceApplication.executor": "Debug",
+    "Spring Boot.UserServiceApplication.executor": "Run",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "feature/USR",
     "jdk.selected.JAVA_MODULE": "ms-21",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/microservice/userservice",
+    "last_opened_file_path": "D:/microservice/userservice/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "preferences.sourceCode.Java",
     "vue.rearranger.settings.migration": "true"
   },
@@ -106,34 +124,139 @@
       <recent name="by.innowise.course.service.impl" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\microservice\userservice\src\main\resources" />
       <recent name="D:\microservice\userservice" />
       <recent name="D:\microservice" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\microservice\userservice" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="by.innowise.course.service.impl" />
+    </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.UserServiceApplication">
-    <configuration name="microservice [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.Tests in 'by.innowise.course.service.impl'">
+    <configuration name="PaymentCardServiceImplTest.shouldCreateCardSuccessfully" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="dependencies" />
+            <option value=":userservice:test" />
+            <option value="--tests" />
+            <option value="&quot;by.innowise.course.service.impl.PaymentCardServiceImplTest.shouldCreateCardSuccessfully&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests in 'by.innowise.course.service.impl'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":userservice:test" />
+            <option value="--tests" />
+            <option value="&quot;by.innowise.course.service.impl.*&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserServiceImplTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":userservice:test" />
+            <option value="--tests" />
+            <option value="&quot;by.innowise.course.service.impl.UserServiceImplTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserServiceImplTest.shouldCreateUser (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":userservice:test" />
+            <option value="--tests" />
+            <option value="&quot;by.innowise.course.service.impl.UserServiceImplTest.shouldCreateUser&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserServiceImplTest.shouldReadAllUsersWithSpecification" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":userservice:test" />
+            <option value="--tests" />
+            <option value="&quot;by.innowise.course.service.impl.UserServiceImplTest.shouldReadAllUsersWithSpecification&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
@@ -150,12 +273,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Gradle.microservice [dependencies]" />
+      <item itemvalue="Gradle.PaymentCardServiceImplTest.shouldCreateCardSuccessfully" />
+      <item itemvalue="Gradle.Tests in 'by.innowise.course.service.impl'" />
+      <item itemvalue="Gradle.UserServiceImplTest" />
+      <item itemvalue="Gradle.UserServiceImplTest.shouldReadAllUsersWithSpecification" />
+      <item itemvalue="Gradle.UserServiceImplTest.shouldCreateUser (1)" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.microservice [dependencies]" />
+        <item itemvalue="Gradle.Tests in 'by.innowise.course.service.impl'" />
+        <item itemvalue="Gradle.UserServiceImplTest.shouldReadAllUsersWithSpecification" />
+        <item itemvalue="Gradle.PaymentCardServiceImplTest.shouldCreateCardSuccessfully" />
+        <item itemvalue="Gradle.UserServiceImplTest" />
+        <item itemvalue="Gradle.UserServiceImplTest.shouldCreateUser (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -169,7 +300,8 @@
       <updated>1779033931094</updated>
       <workItem from="1779033932050" duration="1764000" />
       <workItem from="1779042785105" duration="6562000" />
-      <workItem from="1779052871922" duration="16458000" />
+      <workItem from="1779052871922" duration="17594000" />
+      <workItem from="1779133289148" duration="7316000" />
     </task>
     <servers />
   </component>
@@ -187,15 +319,8 @@
       </map>
     </option>
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/entity/PaymentCard.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/microservice$Tests_in__by_innowise_course_service_impl_.ic" NAME="Tests in 'by.innowise.course.service.impl' Coverage Results" MODIFIED="1779211489368" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/microservice$UserServiceImplTest.ic" NAME="UserServiceImplTest Coverage Results" MODIFIED="1779135229669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

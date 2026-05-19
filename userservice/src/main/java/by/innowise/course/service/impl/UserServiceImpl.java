@@ -24,7 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
-
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
@@ -113,7 +112,7 @@ public class UserServiceImpl implements UserService {
             value = "users",
             key = "#id"
     )
-    public UserResponseDto activate(Long id) {
+    public void activate(Long id) {
 
         User user = userRepository.findById(id)
                 .orElseThrow(()
@@ -121,7 +120,7 @@ public class UserServiceImpl implements UserService {
                 );
 
         user.setActive(true);
-        return userMapper.toDto(userRepository.save(user));
+        userMapper.toDto(userRepository.save(user));
     }
 
     @Override
@@ -130,7 +129,7 @@ public class UserServiceImpl implements UserService {
             value = "users",
             key = "#id"
     )
-    public UserResponseDto deactivate(Long id) {
+    public void deactivate(Long id) {
 
         User user = userRepository.findById(id)
                 .orElseThrow(()
@@ -138,7 +137,7 @@ public class UserServiceImpl implements UserService {
                 );
 
         user.setActive(false);
-        return userMapper.toDto(userRepository.save(user));
+        userMapper.toDto(userRepository.save(user));
     }
 
     @Override

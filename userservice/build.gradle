@@ -14,23 +14,33 @@ repositories {
 dependencies {
 
     implementation 'org.liquibase:liquibase-core'
-    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
-    implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final' // in basic starter?
+    implementation 'org.springframework.boot:spring-boot-starter' // in basic starter?
+    implementation 'org.springframework.boot:spring-boot-starter-web' // in basic starter?
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // in basic starter?
+    implementation 'org.springframework.boot:spring-boot-starter-validation' // in basic starter?
     implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
     runtimeOnly 'org.postgresql:postgresql'
 
-    compileOnly 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok' // in basic starter?
 
-    annotationProcessor 'org.projectlombok:lombok'
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+    annotationProcessor 'org.projectlombok:lombok' // in basic starter?
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final' // in basic starter?
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' // in basic starter?
+    testImplementation 'org.mockito:mockito-core' // in basic starter?
+    testImplementation 'org.mockito:mockito-junit-jupiter' // in basic starter?
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:testcontainers'
+    testImplementation 'org.testcontainers:postgresql'
+
 }
 
 test {
