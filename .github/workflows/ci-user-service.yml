@@ -31,7 +31,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build application
-        run: ./gradlew :userservice:clean :userservice:build -x test
+        run: ./gradlew :userservice:clean :userservice:bootJar -x test
 
       - name: Run tests
         run: ./gradlew :userservice:test
