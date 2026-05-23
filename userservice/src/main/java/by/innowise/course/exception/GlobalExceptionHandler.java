@@ -11,11 +11,24 @@ import java.time.LocalDateTime;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(value =
-            {UserNotFoundException.class, PaymentCardNotFoundException.class})
+    @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponseDto handleUserNotFound(
             UserNotFoundException ex
+    ) {
+
+        return ErrorResponseDto.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.NOT_FOUND.value())
+                .error(HttpStatus.NOT_FOUND.getReasonPhrase())
+                .message(ex.getMessage())
+                .build();
+    }
+
+    @ExceptionHandler(PaymentCardNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponseDto handleCardNotFound(
+            PaymentCardNotFoundException ex
     ) {
 
         return ErrorResponseDto.builder()
@@ -41,7 +54,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(UserCardsLimitExceededException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.CONFLICT)
     public ErrorResponseDto handleUserCardsLimitExceeded(
             UserCardsLimitExceededException ex
     ) {
@@ -74,6 +87,17 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST.value())
                 .error(HttpStatus.BAD_REQUEST.getReasonPhrase())
                 .message(message)
+                .build();
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorResponseDto handleAll(Exception ex) {
+        return ErrorResponseDto.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .error(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())
+                .message(ex.getMessage())
                 .build();
     }
 }

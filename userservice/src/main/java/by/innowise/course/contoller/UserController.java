@@ -5,12 +5,23 @@ import by.innowise.course.dto.UserResponseDto;
 import by.innowise.course.service.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 @Validated
 @RestController
@@ -31,8 +42,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public UserResponseDto readById(
-            @Positive(message = "Id must be positive")
-            @PathVariable Long id
+            @Positive(message = "Id must be positive") @PathVariable Long id
     ) {
 
         return userService.readById(id);
@@ -42,8 +52,8 @@ public class UserController {
     public Page<UserResponseDto> readAll(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String surname,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
+            @RequestParam(defaultValue = "0") @PositiveOrZero int page,
+            @RequestParam(defaultValue = "10") @Positive int size
     ) {
 
         return userService.readAll(
@@ -55,8 +65,8 @@ public class UserController {
 
     @GetMapping("/active")
     public Page<UserResponseDto> readActiveUsers(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
+            @RequestParam(defaultValue = "0") @PositiveOrZero int page,
+            @RequestParam(defaultValue = "10") @Positive int size
     ) {
 
         return userService.readActiveUsers(
@@ -66,8 +76,8 @@ public class UserController {
 
     @GetMapping("/without-cards")
     public Page<UserResponseDto> readUsersWithoutCards(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
+            @RequestParam(defaultValue = "0") @PositiveOrZero int page,
+            @RequestParam(defaultValue = "10") @Positive int size
     ) {
 
         return userService.readUsersWithoutCards(
@@ -77,8 +87,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     public UserResponseDto update(
-            @Positive(message = "Id must be positive")
-            @PathVariable Long id,
+            @Positive(message = "Id must be positive") @PathVariable Long id,
             @Valid @RequestBody UserRequestDto dto
     ) {
 
@@ -88,8 +97,7 @@ public class UserController {
     @PatchMapping("/{id}/activate")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void activate(
-            @Positive(message = "Id must be positive")
-            @PathVariable Long id
+            @Positive(message = "Id must be positive") @PathVariable Long id
     ) {
 
         userService.activate(id);
@@ -98,8 +106,7 @@ public class UserController {
     @PatchMapping("/{id}/deactivate")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deactivate(
-            @Positive(message = "Id must be positive")
-            @PathVariable Long id
+            @Positive(message = "Id must be positive") @PathVariable Long id
     ) {
 
         userService.deactivate(id);
@@ -108,8 +115,7 @@ public class UserController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(
-            @Positive(message = "Id must be positive")
-            @PathVariable Long id
+            @Positive(message = "Id must be positive") @PathVariable Long id
     ) {
 
         userService.delete(id);

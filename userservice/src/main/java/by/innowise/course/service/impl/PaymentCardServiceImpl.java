@@ -18,8 +18,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @RequiredArgsConstructor
 @Service
 @Transactional(readOnly = true)
@@ -71,12 +69,9 @@ public class PaymentCardServiceImpl implements PaymentCardService {
     }
 
     @Override
-    public List<PaymentCardResponseDto> readAllByUserId(Long userId) {
-
-        return paymentCardRepository.findByUserId(userId)
-                .stream()
-                .map(paymentCardMapper::toDto)
-                .toList();
+    public Page<PaymentCardResponseDto> readAllByUserId(Long userId, Pageable pageable) {
+        return paymentCardRepository.findByUserId(userId, pageable)
+                .map(paymentCardMapper::toDto);
     }
 
     @Override
@@ -99,10 +94,10 @@ public class PaymentCardServiceImpl implements PaymentCardService {
             PaymentCardRequestDto dto
     ) {
 
-        PaymentCard card =
-                paymentCardRepository.findById(id)
-                        .orElseThrow(()
-                                -> new PaymentCardNotFoundException(id));
+        PaymentCard card = paymentCardRepository.findById(id)
+                .orElseThrow(()
+                        -> new PaymentCardNotFoundException(id)
+                );
 
         card.setNumber(dto.getNumber());
         card.setHolder(dto.getHolder());

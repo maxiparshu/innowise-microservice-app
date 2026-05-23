@@ -12,7 +12,7 @@ public interface PaymentCardRepository extends JpaRepository<PaymentCard, Long> 
 
     long countByUserId(Long userId);
 
-    List<PaymentCard> findByUserId(Long id);
+    Page<PaymentCard> findByUserId(Long id, Pageable pageable);
 
     @Query("""
             SELECT pc

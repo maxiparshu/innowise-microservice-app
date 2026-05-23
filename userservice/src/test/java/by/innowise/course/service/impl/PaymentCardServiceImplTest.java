@@ -11,7 +11,7 @@ import by.innowise.course.exception.UserNotFoundException;
 import by.innowise.course.mapper.PaymentCardMapper;
 import by.innowise.course.repository.PaymentCardRepository;
 import by.innowise.course.repository.UserRepository;
-import by.innowise.course.service.impl.utils.TestDataFactory;
+import by.innowise.course.utils.TestDataFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -180,19 +180,22 @@ class PaymentCardServiceImplTest {
         PaymentCard card = new PaymentCard();
         PaymentCardResponseDto dto = new PaymentCardResponseDto();
 
-        when(paymentCardRepository.findByUserId(userId))
-                .thenReturn(List.of(card));
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<PaymentCard> page = new PageImpl<>(List.of(card));
+
+        when(paymentCardRepository.findByUserId(userId, pageable))
+                .thenReturn(page);
 
         when(paymentCardMapper.toDto(card))
                 .thenReturn(dto);
 
-        List<PaymentCardResponseDto> result =
-                service.readAllByUserId(userId);
+        Page<PaymentCardResponseDto> result =
+                service.readAllByUserId(userId, pageable);
 
         assertNotNull(result);
-        assertEquals(1, result.size());
+        assertEquals(1, result.getContent().size());
 
-        verify(paymentCardRepository).findByUserId(userId);
+        verify(paymentCardRepository).findByUserId(userId, pageable);
         verify(paymentCardMapper).toDto(card);
     }
 

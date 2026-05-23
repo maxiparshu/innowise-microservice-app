@@ -3,7 +3,7 @@ version: '3.9'
 services:
   postgres:
     image: postgres:16
-    container_name: userdb
+    container_name: postgres
 
     env_file:
       .env
@@ -21,9 +21,29 @@ services:
 
   redis:
     image: redis:7
-    container_name: redis-cache
+    container_name: redis
 
     ports:
       - "6379:6379"
+
+  userservice:
+    build:
+      context: ./userservice
+
+    container_name: user-service
+
+    env_file:
+      ./userservice/.env
+
+    depends_on:
+      - postgres
+      - redis
+
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+
+    ports:
+      - "8001:8001"
+
 volumes:
   userdb_data:

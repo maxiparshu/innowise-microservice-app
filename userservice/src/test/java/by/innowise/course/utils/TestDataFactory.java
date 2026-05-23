@@ -1,4 +1,4 @@
-package by.innowise.course.service.impl.utils;
+package by.innowise.course.utils;
 
 import by.innowise.course.dto.PaymentCardRequestDto;
 import by.innowise.course.dto.PaymentCardResponseDto;
@@ -83,6 +83,7 @@ public final class TestDataFactory {
 
         dto.setNumber("1111222233334444");
         dto.setHolder("JOHN DOE");
+        dto.setActive(true);
         dto.setExpirationDate(LocalDate.now().plusYears(3));
 
         return dto;

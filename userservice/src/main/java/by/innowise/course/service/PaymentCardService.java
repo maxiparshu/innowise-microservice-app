@@ -19,7 +19,7 @@ public interface PaymentCardService {
             Pageable pageable
     );
 
-    List<PaymentCardResponseDto> readAllByUserId(Long userId);
+    Page<PaymentCardResponseDto> readAllByUserId(Long userId, Pageable pageable);
 
     Page<PaymentCardResponseDto> readActiveCards(
             Pageable pageable

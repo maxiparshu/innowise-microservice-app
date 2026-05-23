@@ -7,7 +7,7 @@ import by.innowise.course.exception.UserNotFoundException;
 import by.innowise.course.exception.UserWithEmailAlreadyExistException;
 import by.innowise.course.mapper.UserMapper;
 import by.innowise.course.repository.UserRepository;
-import by.innowise.course.service.impl.utils.TestDataFactory;
+import by.innowise.course.utils.TestDataFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
