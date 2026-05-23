@@ -5,27 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="154f2eba-a5fd-409a-b4a5-262077755a85" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/userservice/src/test/resources/docker-java.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/userservice/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/contoller/PaymentCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/contoller/PaymentCardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/contoller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/contoller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/dto/PaymentCardRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/dto/PaymentCardRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/exception/PaymentCardNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/exception/PaymentCardNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/repository/PaymentCardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/repository/PaymentCardRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/service/PaymentCardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/service/PaymentCardService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/service/impl/PaymentCardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/service/impl/PaymentCardServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/resources/application-test.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/test/java/by/innowise/course/service/impl/AbstractIntegrationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/test/java/by/innowise/course/service/impl/PaymentCardServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/test/java/by/innowise/course/service/impl/PaymentCardServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/test/java/by/innowise/course/service/impl/UserServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/test/java/by/innowise/course/service/impl/UserServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/userservice/src/test/java/by/innowise/course/service/impl/utils/TestDataFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/test/java/by/innowise/course/utils/TestDataFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +84,9 @@
     "Gradle.UserServiceImplTest.shouldCreateUser (1).executor": "Run",
     "Gradle.UserServiceImplTest.shouldCreateUser.executor": "Run",
     "Gradle.UserServiceImplTest.shouldReadAllUsersWithSpecification.executor": "Run",
+    "Gradle.microservice [:userservice:sonar].executor": "Run",
     "Gradle.microservice [dependencies].executor": "Run",
+    "Gradle.microservice [sonar].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -155,31 +139,7 @@
       <recent name="by.innowise.course.service.impl" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Tests in 'by.innowise.course.integration'">
-    <configuration name="CardsControllerIntegrationTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":userservice:test" />
-            <option value="--tests" />
-            <option value="&quot;by.innowise.course.integration.CardsControllerIntegrationTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.microservice [sonar]">
     <configuration name="Tests in 'by.innowise.course.integration'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -228,30 +188,6 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="UserControllerIntegrationTest.shouldNotFindUser" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":userservice:test" />
-            <option value="--tests" />
-            <option value="&quot;by.innowise.course.integration.UserControllerIntegrationTest.shouldNotFindUser&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration name="UserControllerIntegrationTest.successfulUserScenario" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -276,6 +212,50 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="microservice [:userservice:sonar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":userservice:sonar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="microservice [sonar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="sonar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="ACTIVE_PROFILES" value="local" />
       <option name="envFilePaths">
@@ -291,20 +271,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Gradle.CardsControllerIntegrationTest" />
       <item itemvalue="Gradle.Tests in 'by.innowise.course.integration'" />
-      <item itemvalue="Gradle.UserControllerIntegrationTest.shouldNotFindUser" />
       <item itemvalue="Gradle.UserControllerIntegrationTest.successfulUserScenario" />
+      <item itemvalue="Gradle.microservice [:userservice:sonar]" />
+      <item itemvalue="Gradle.microservice [sonar]" />
       <item itemvalue="Gradle.UserControllerIntegrationTest" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.microservice [sonar]" />
+        <item itemvalue="Gradle.microservice [:userservice:sonar]" />
         <item itemvalue="Gradle.Tests in 'by.innowise.course.integration'" />
         <item itemvalue="Gradle.UserControllerIntegrationTest" />
         <item itemvalue="Gradle.UserControllerIntegrationTest.successfulUserScenario" />
-        <item itemvalue="Gradle.CardsControllerIntegrationTest" />
-        <item itemvalue="Gradle.UserControllerIntegrationTest.shouldNotFindUser" />
       </list>
     </recent_temporary>
   </component>
@@ -331,7 +311,7 @@
       <workItem from="1779484993862" duration="550000" />
       <workItem from="1779552061922" duration="2091000" />
       <workItem from="1779554676518" duration="149000" />
-      <workItem from="1779554944147" duration="13413000" />
+      <workItem from="1779554944147" duration="14147000" />
     </task>
     <servers />
   </component>
