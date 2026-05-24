@@ -14,7 +14,7 @@ repositories {
 
 sonar {
     properties {
-        property "sonar.projectKey", "userservice"
+        property "sonar.projectKey", "innowise-microservice-app"
         property "sonar.organization", "maxiparshu"
         property "sonar.host.url", "https://sonarcloud.io"
     }
