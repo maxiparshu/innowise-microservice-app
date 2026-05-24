@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="154f2eba-a5fd-409a-b4a5-262077755a85" name="Changes" comment="" />
+    <list default="true" id="154f2eba-a5fd-409a-b4a5-262077755a85" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,6 +68,7 @@
     "Gradle.DemoTest.executor": "Run",
     "Gradle.PaymentCardServiceImplTest.shouldCreateCardSuccessfully.executor": "Run",
     "Gradle.PaymentCardServiceImplTest.shouldThrowWhenCardNotFound.executor": "Run",
+    "Gradle.Tests in 'by.innowise.course'.executor": "Coverage",
     "Gradle.Tests in 'by.innowise.course.integration'.executor": "Run",
     "Gradle.Tests in 'by.innowise.course.service.impl'.executor": "Coverage",
     "Gradle.UserControllerIntegrationTest.executor": "Run",
@@ -80,6 +83,7 @@
     "Gradle.UserServiceImplTest.shouldCreateUser (1).executor": "Run",
     "Gradle.UserServiceImplTest.shouldCreateUser.executor": "Run",
     "Gradle.UserServiceImplTest.shouldReadAllUsersWithSpecification.executor": "Run",
+    "Gradle.UserServiceImplTest.shouldThrowWhenEmailChangedAndAlreadyExists.executor": "Run",
     "Gradle.microservice [:userservice:sonar].executor": "Run",
     "Gradle.microservice [dependencies].executor": "Run",
     "Gradle.microservice [sonar].executor": "Run",
@@ -135,7 +139,31 @@
       <recent name="by.innowise.course.service.impl" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.UserControllerIntegrationTest">
+  <component name="RunManager" selected="Gradle.Tests in 'by.innowise.course'">
+    <configuration name="Tests in 'by.innowise.course'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":userservice:test" />
+            <option value="--tests" />
+            <option value="&quot;by.innowise.course.*&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="UserControllerIntegrationTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -208,28 +236,6 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="microservice [:userservice:sonar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":userservice:sonar" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration name="microservice [sonar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -267,20 +273,20 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Gradle.Tests in 'by.innowise.course'" />
       <item itemvalue="Gradle.UserServiceImplTest" />
       <item itemvalue="Gradle.UserServiceImplTest.shouldThrowWhenEmailChangedAndAlreadyExists" />
-      <item itemvalue="Gradle.microservice [:userservice:sonar]" />
       <item itemvalue="Gradle.microservice [sonar]" />
       <item itemvalue="Gradle.UserControllerIntegrationTest" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.Tests in 'by.innowise.course'" />
         <item itemvalue="Gradle.UserControllerIntegrationTest" />
         <item itemvalue="Gradle.UserServiceImplTest.shouldThrowWhenEmailChangedAndAlreadyExists" />
         <item itemvalue="Gradle.UserServiceImplTest" />
         <item itemvalue="Gradle.microservice [sonar]" />
-        <item itemvalue="Gradle.microservice [:userservice:sonar]" />
       </list>
     </recent_temporary>
   </component>
@@ -308,7 +314,7 @@
       <workItem from="1779552061922" duration="2091000" />
       <workItem from="1779554676518" duration="149000" />
       <workItem from="1779554944147" duration="14147000" />
-      <workItem from="1779601019096" duration="344000" />
+      <workItem from="1779601019096" duration="651000" />
     </task>
     <servers />
   </component>
