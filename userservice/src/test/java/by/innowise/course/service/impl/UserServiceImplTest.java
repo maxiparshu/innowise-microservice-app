@@ -47,7 +47,7 @@ class UserServiceImplTest {
 
 
     @Test
-    public void shouldCreateUser() {
+    void shouldCreateUser() {
         UserRequestDto dto = TestDataFactory.createUserRequestDto();
         User user = new User();
         User saved = TestDataFactory.createUser();
@@ -70,7 +70,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    public void shouldThrowWhenEmailExists() {
+    void shouldThrowWhenEmailExists() {
         UserRequestDto dto = new UserRequestDto();
         dto.setEmail("test@mail.com");
 
@@ -85,7 +85,7 @@ class UserServiceImplTest {
 
 
     @Test
-    public void shouldReturnUserById() {
+    void shouldReturnUserById() {
         User user = new User();
         UserResponseDto dto = TestDataFactory.createUserResponseDto();
 
@@ -104,7 +104,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    public void shouldThrowWhenUserNotFound() {
+    void shouldThrowWhenUserNotFound() {
         when(userRepository.findById(1L))
                 .thenReturn(Optional.empty());
 
@@ -116,7 +116,7 @@ class UserServiceImplTest {
 
 
     @Test
-    public void shouldUpdateUserWithoutEmailConflict() {
+    void shouldUpdateUserWithoutEmailConflict() {
         UserRequestDto request = TestDataFactory.createUserRequestDto();
         User user = TestDataFactory.createUser();
         UserResponseDto response = TestDataFactory.createUserResponseDto();
@@ -138,7 +138,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    public void shouldThrowWhenEmailChangedAndAlreadyExists() {
+    void shouldThrowWhenEmailChangedAndAlreadyExists() {
         UserRequestDto dto = new UserRequestDto();
         dto.setEmail("new@mail.com");
 
@@ -157,7 +157,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    public void shouldThrowWhenUserNotFoundInUpdate() {
+    void shouldThrowWhenUserNotFoundInUpdate() {
         UserRequestDto dto = new UserRequestDto();
 
         when(userRepository.findById(1L))
@@ -170,7 +170,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    public void shouldReadAllUsersWithSpecification() {
+    void shouldReadAllUsersWithSpecification() {
         Pageable pageable = PageRequest.of(0, 10);
 
         User user = TestDataFactory.createUser();
@@ -196,7 +196,7 @@ class UserServiceImplTest {
 
 
     @Test
-    public void shouldReadActiveUsers() {
+    void shouldReadActiveUsers() {
         Pageable pageable = PageRequest.of(0, 10);
 
         User user = new User();
@@ -220,7 +220,7 @@ class UserServiceImplTest {
 
 
     @Test
-    public void shouldReadUsersWithoutCards() {
+    void shouldReadUsersWithoutCards() {
 
         Pageable pageable = PageRequest.of(0, 10);
 
@@ -243,7 +243,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    public void shouldActivateUser() {
+    void shouldActivateUser() {
         User user = new User();
         user.setActive(false);
 
@@ -260,7 +260,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    public void shouldThrowWhenUserNotFoundInActivate() {
+    void shouldThrowWhenUserNotFoundInActivate() {
         when(userRepository.findById(1L))
                 .thenReturn(Optional.empty());
 
@@ -271,7 +271,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    public void shouldDeactivateUser() {
+    void shouldDeactivateUser() {
         User user = new User();
         user.setActive(true);
 
@@ -288,7 +288,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    public void shouldThrowWhenUserNotFoundInDeactivate() {
+    void shouldThrowWhenUserNotFoundInDeactivate() {
         when(userRepository.findById(1L))
                 .thenReturn(Optional.empty());
 

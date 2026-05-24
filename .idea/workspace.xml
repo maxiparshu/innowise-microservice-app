@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="154f2eba-a5fd-409a-b4a5-262077755a85" name="Changes" comment="" />
+    <list default="true" id="154f2eba-a5fd-409a-b4a5-262077755a85" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/repository/PaymentCardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/repository/PaymentCardRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/service/PaymentCardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/main/java/by/innowise/course/service/PaymentCardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/src/test/java/by/innowise/course/integration/CardsControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/src/test/java/by/innowise/course/integration/CardsControllerIntegrationTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,7 +98,6 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.UserServiceApplication.executor": "Run",
-    "android.gradle.sync.needed": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "feature/USR",
@@ -309,6 +315,7 @@
       <workItem from="1779552061922" duration="2091000" />
       <workItem from="1779554676518" duration="149000" />
       <workItem from="1779554944147" duration="14147000" />
+      <workItem from="1779601019096" duration="41000" />
     </task>
     <servers />
   </component>

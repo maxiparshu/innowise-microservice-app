@@ -1,7 +1,6 @@
 package by.innowise.course.integration;
 
 import by.innowise.course.dto.PaymentCardRequestDto;
-import by.innowise.course.dto.PaymentCardResponseDto;
 import by.innowise.course.dto.UserRequestDto;
 import by.innowise.course.utils.TestDataFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -57,6 +56,7 @@ public class CardsControllerIntegrationTest {
         registry.add("spring.data.redis.port",
                 () -> redis.getMappedPort(6379));
     }
+
     @Autowired
     protected MockMvc mockMvc;
 

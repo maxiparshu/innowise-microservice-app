@@ -54,7 +54,7 @@ class PaymentCardServiceImplTest {
     private PaymentCardServiceImpl service;
 
     @Test
-    public void shouldThrowUserNotFound() {
+    void shouldThrowUserNotFound() {
         Long userId = 1L;
         PaymentCardRequestDto dto = new PaymentCardRequestDto();
 
@@ -72,7 +72,7 @@ class PaymentCardServiceImplTest {
 
 
     @Test
-    public void shouldThrowWhenCardLimitExceeded() {
+    void shouldThrowWhenCardLimitExceeded() {
         Long userId = 1L;
         PaymentCardRequestDto dto = new PaymentCardRequestDto();
 
@@ -95,7 +95,7 @@ class PaymentCardServiceImplTest {
 
 
     @Test
-    public void shouldCreateCardSuccessfully() {
+    void shouldCreateCardSuccessfully() {
         Long userId = 1L;
         PaymentCardRequestDto dto = TestDataFactory.createPaymentCardRequestDto();
         User user = TestDataFactory.createUser();
@@ -127,7 +127,7 @@ class PaymentCardServiceImplTest {
     }
 
     @Test
-    public void shouldReturnCardById() {
+    void shouldReturnCardById() {
         Long id = 1L;
 
         PaymentCard card = new PaymentCard();
@@ -146,7 +146,7 @@ class PaymentCardServiceImplTest {
     }
 
     @Test
-    public void shouldReturnAllCards() {
+    void shouldReturnAllCards() {
 
         Pageable pageable = PageRequest.of(0, 10);
 
@@ -173,7 +173,7 @@ class PaymentCardServiceImplTest {
     }
 
     @Test
-    public void shouldReturnCardsByUserId() {
+    void shouldReturnCardsByUserId() {
 
         Long userId = 1L;
 
@@ -200,7 +200,7 @@ class PaymentCardServiceImplTest {
     }
 
     @Test
-    public void shouldReturnActiveCards() {
+    void shouldReturnActiveCards() {
 
         Pageable pageable = PageRequest.of(0, 10);
 
@@ -227,7 +227,7 @@ class PaymentCardServiceImplTest {
     }
 
     @Test
-    public void shouldReturnCardsExpiringSoon() {
+    void shouldReturnCardsExpiringSoon() {
 
         Pageable pageable = PageRequest.of(0, 10);
 
@@ -254,7 +254,7 @@ class PaymentCardServiceImplTest {
     }
 
     @Test
-    public void shouldThrowWhenCardNotFoundInUpdate() {
+    void shouldThrowWhenCardNotFoundInUpdate() {
         Long id = 1L;
         PaymentCardRequestDto dto = new PaymentCardRequestDto();
 
@@ -272,7 +272,7 @@ class PaymentCardServiceImplTest {
 
 
     @Test
-    public void shouldUpdateCardSuccessfully() {
+    void shouldUpdateCardSuccessfully() {
         Long id = 1L;
         PaymentCardRequestDto dto = TestDataFactory.createPaymentCardRequestDto();
         dto.setExpirationDate(LocalDate.now().plusYears(1));
@@ -301,7 +301,7 @@ class PaymentCardServiceImplTest {
     }
 
     @Test
-    public void shouldActivateCard() {
+    void shouldActivateCard() {
         Long id = 1L;
 
 
@@ -320,7 +320,7 @@ class PaymentCardServiceImplTest {
     }
 
     @Test
-    public void shouldDeactivateCard() {
+    void shouldDeactivateCard() {
         Long id = 1L;
         PaymentCard card = TestDataFactory.createPaymentCard();
         PaymentCard saved = TestDataFactory.createPaymentCard();
@@ -339,7 +339,7 @@ class PaymentCardServiceImplTest {
     }
 
     @Test
-    public void shouldDeleteCard() {
+    void shouldDeleteCard() {
         Long id = 1L;
         PaymentCard card = TestDataFactory.createPaymentCard();
 
@@ -352,7 +352,7 @@ class PaymentCardServiceImplTest {
     }
 
     @Test
-    public void shouldThrowWhenCardNotFound() {
+    void shouldThrowWhenCardNotFound() {
         Long id = 1L;
 
         when(paymentCardRepository.findById(id))
