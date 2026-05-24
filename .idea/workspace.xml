@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="154f2eba-a5fd-409a-b4a5-262077755a85" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/userservice/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/build.gradle" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="microservice" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="3DrInVELYvovslTlDDXskYDKy6S" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build microservice.executor": "Run",
+    "Gradle.CardsControllerIntegrationTest.executor": "Run",
+    "Gradle.DemoTest.executor": "Run",
+    "Gradle.PaymentCardServiceImplTest.shouldCreateCardSuccessfully.executor": "Run",
+    "Gradle.PaymentCardServiceImplTest.shouldThrowWhenCardNotFound.executor": "Run",
+    "Gradle.Tests in 'by.innowise.course'.executor": "Coverage",
+    "Gradle.Tests in 'by.innowise.course.integration'.executor": "Run",
+    "Gradle.Tests in 'by.innowise.course.service.impl'.executor": "Coverage",
+    "Gradle.UserControllerIntegrationTest.executor": "Run",
+    "Gradle.UserControllerIntegrationTest.shouldCreateAndReturnUser.executor": "Run",
+    "Gradle.UserControllerIntegrationTest.shouldCreateUser (1).executor": "Run",
+    "Gradle.UserControllerIntegrationTest.shouldCreateUser.executor": "Run",
+    "Gradle.UserControllerIntegrationTest.shouldNotCreateUserValidationError.executor": "Run",
+    "Gradle.UserControllerIntegrationTest.shouldNotFindUser.executor": "Run",
+    "Gradle.UserControllerIntegrationTest.successfulUserScenario.executor": "Run",
+    "Gradle.UserRepositoryTest.testSaveUser.executor": "Run",
+    "Gradle.UserServiceImplTest.executor": "Run",
+    "Gradle.UserServiceImplTest.shouldCreateUser (1).executor": "Run",
+    "Gradle.UserServiceImplTest.shouldCreateUser.executor": "Run",
+    "Gradle.UserServiceImplTest.shouldReadAllUsersWithSpecification.executor": "Run",
+    "Gradle.UserServiceImplTest.shouldThrowWhenEmailChangedAndAlreadyExists.executor": "Run",
+    "Gradle.microservice [:userservice:sonar].executor": "Run",
+    "Gradle.microservice [dependencies].executor": "Run",
+    "Gradle.microservice [sonar].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.UserServiceApplication.executor": "Run",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "feature/USR",
+    "jdk.selected.JAVA_MODULE": "ms-21",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/microservice/userservice/src/test/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="by.innowise.course.service.impl" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\microservice\userservice\src\test\resources" />
+      <recent name="D:\microservice\userservice\src\main\resources" />
+      <recent name="D:\microservice\userservice" />
+      <recent name="D:\microservice" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\microservice\userservice\src\test\resources" />
+      <recent name="D:\microservice\userservice" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="by.innowise.course.service.impl" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.Tests in 'by.innowise.course'">
+    <configuration name="Tests in 'by.innowise.course'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":userservice:test" />
+            <option value="--tests" />
+            <option value="&quot;by.innowise.course.*&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserControllerIntegrationTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":userservice:test" />
+            <option value="--tests" />
+            <option value="&quot;by.innowise.course.integration.UserControllerIntegrationTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserServiceImplTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":userservice:test" />
+            <option value="--tests" />
+            <option value="&quot;by.innowise.course.service.impl.UserServiceImplTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserServiceImplTest.shouldThrowWhenEmailChangedAndAlreadyExists" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":userservice:test" />
+            <option value="--tests" />
+            <option value="&quot;by.innowise.course.service.impl.UserServiceImplTest.shouldThrowWhenEmailChangedAndAlreadyExists&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="microservice [sonar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="sonar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="UserServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="local" />
+      <option name="envFilePaths">
+        <option value="$PROJECT_DIR$/userservice/.env" />
+      </option>
+      <module name="microservice.userservice.main" />
+      <selectedOptions>
+        <option name="environmentVariables" />
+      </selectedOptions>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="by.innowise.course.UserServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.Tests in 'by.innowise.course'" />
+      <item itemvalue="Gradle.UserServiceImplTest" />
+      <item itemvalue="Gradle.UserServiceImplTest.shouldThrowWhenEmailChangedAndAlreadyExists" />
+      <item itemvalue="Gradle.microservice [sonar]" />
+      <item itemvalue="Gradle.UserControllerIntegrationTest" />
+      <item itemvalue="Spring Boot.UserServiceApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.Tests in 'by.innowise.course'" />
+        <item itemvalue="Gradle.UserControllerIntegrationTest" />
+        <item itemvalue="Gradle.UserServiceImplTest.shouldThrowWhenEmailChangedAndAlreadyExists" />
+        <item itemvalue="Gradle.UserServiceImplTest" />
+        <item itemvalue="Gradle.microservice [sonar]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="154f2eba-a5fd-409a-b4a5-262077755a85" name="Changes" comment="" />
+      <created>1779033931094</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1779033931094</updated>
+      <workItem from="1779033932050" duration="1764000" />
+      <workItem from="1779042785105" duration="6562000" />
+      <workItem from="1779052871922" duration="17594000" />
+      <workItem from="1779133289148" duration="13336000" />
+      <workItem from="1779221527247" duration="720000" />
+      <workItem from="1779222869509" duration="5212000" />
+      <workItem from="1779459590334" duration="1443000" />
+      <workItem from="1779469687295" duration="599000" />
+      <workItem from="1779475261943" duration="1002000" />
+      <workItem from="1779479162329" duration="2663000" />
+      <workItem from="1779481864739" duration="760000" />
+      <workItem from="1779483275704" duration="1536000" />
+      <workItem from="1779484993862" duration="550000" />
+      <workItem from="1779552061922" duration="2091000" />
+      <workItem from="1779554676518" duration="149000" />
+      <workItem from="1779554944147" duration="14147000" />
+      <workItem from="1779601019096" duration="847000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/userservice/src/test/java/by/innowise/course/service/impl/UserServiceImplTest.java</url>
+          <line>172</line>
+          <properties class="by.innowise.course.service.impl.UserServiceImplTest" method="shouldReadAllUsersWithSpecification">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/microservice$Tests_in__by_innowise_course_.ic" NAME="Tests in 'by.innowise.course' Coverage Results" MODIFIED="1779601602748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/microservice$Tests_in__by_innowise_course_service_impl_.ic" NAME="Tests in 'by.innowise.course.service.impl' Coverage Results" MODIFIED="1779211489368" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/microservice$UserServiceImplTest.ic" NAME="UserServiceImplTest Coverage Results" MODIFIED="1779135229669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
