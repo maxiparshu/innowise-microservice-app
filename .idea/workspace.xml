@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="154f2eba-a5fd-409a-b4a5-262077755a85" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userservice/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/userservice/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -314,7 +314,7 @@
       <workItem from="1779552061922" duration="2091000" />
       <workItem from="1779554676518" duration="149000" />
       <workItem from="1779554944147" duration="14147000" />
-      <workItem from="1779601019096" duration="651000" />
+      <workItem from="1779601019096" duration="847000" />
     </task>
     <servers />
   </component>
@@ -348,6 +348,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/microservice$Tests_in__by_innowise_course_.ic" NAME="Tests in 'by.innowise.course' Coverage Results" MODIFIED="1779601602748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/microservice$Tests_in__by_innowise_course_service_impl_.ic" NAME="Tests in 'by.innowise.course.service.impl' Coverage Results" MODIFIED="1779211489368" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/microservice$UserServiceImplTest.ic" NAME="UserServiceImplTest Coverage Results" MODIFIED="1779135229669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
