@@ -53,6 +53,20 @@ public class GlobalExceptionHandler {
                 .build();
     }
 
+    @ExceptionHandler(CardWithNumberAlreadyExistException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ErrorResponseDto handleCardWithExistedNumberExceeded(
+            CardWithNumberAlreadyExistException ex
+    ) {
+
+        return ErrorResponseDto.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.CONFLICT.value())
+                .error(HttpStatus.CONFLICT.getReasonPhrase())
+                .message(ex.getMessage())
+                .build();
+    }
+
     @ExceptionHandler(UserCardsLimitExceededException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public ErrorResponseDto handleUserCardsLimitExceeded(

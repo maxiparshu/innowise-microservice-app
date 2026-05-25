@@ -302,7 +302,7 @@ class PaymentCardServiceImplTest {
         paymentCard.setNumber("555566664444");
         when(paymentCardRepository.findById(id))
                 .thenReturn(Optional.of(paymentCard));
-        when(paymentCardRepository.existsByNumber(paymentCard.getNumber()))
+        when(paymentCardRepository.existsByNumber(dto.getNumber()))
                 .thenReturn(true);
 
         assertThrows(
