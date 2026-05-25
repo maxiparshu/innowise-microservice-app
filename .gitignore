@@ -2,8 +2,10 @@
 **/.env
 
 **/build/**
-
-.idea/**
+build
+src
+!userservice/src
+.idea
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
