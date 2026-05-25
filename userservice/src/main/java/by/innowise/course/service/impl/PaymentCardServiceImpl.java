@@ -4,6 +4,7 @@ import by.innowise.course.dto.PaymentCardRequestDto;
 import by.innowise.course.dto.PaymentCardResponseDto;
 import by.innowise.course.entity.PaymentCard;
 import by.innowise.course.entity.User;
+import by.innowise.course.exception.CardWithNumberAlreadyExistException;
 import by.innowise.course.exception.PaymentCardNotFoundException;
 import by.innowise.course.exception.UserCardsLimitExceededException;
 import by.innowise.course.exception.UserNotFoundException;
@@ -20,6 +21,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @RequiredArgsConstructor
 @Service
 @Transactional(readOnly = true)
@@ -32,6 +35,9 @@ public class PaymentCardServiceImpl implements PaymentCardService {
     @Override
     @Transactional
     public PaymentCardResponseDto create(Long userId, PaymentCardRequestDto dto) {
+        if (paymentCardRepository.existsByNumber(dto.getNumber())) {
+            throw new CardWithNumberAlreadyExistException(dto.getNumber());
+        }
         User user = userRepository.findByIdForUpdate(userId)
                 .orElseThrow(()
                         -> new UserNotFoundException(userId));
@@ -104,7 +110,10 @@ public class PaymentCardServiceImpl implements PaymentCardService {
                 .orElseThrow(()
                         -> new PaymentCardNotFoundException(id)
                 );
-
+        String newNumber = dto.getNumber();
+        if (paymentCardRepository.existsByNumber(newNumber) && !Objects.equals(card.getNumber(), newNumber)) {
+            throw new CardWithNumberAlreadyExistException(newNumber);
+        }
         card.setNumber(dto.getNumber());
         card.setHolder(dto.getHolder());
         card.setExpirationDate(dto.getExpirationDate());

@@ -5,6 +5,7 @@ import by.innowise.course.dto.PaymentCardRequestDto;
 import by.innowise.course.dto.PaymentCardResponseDto;
 import by.innowise.course.entity.PaymentCard;
 import by.innowise.course.entity.User;
+import by.innowise.course.exception.CardWithNumberAlreadyExistException;
 import by.innowise.course.exception.PaymentCardNotFoundException;
 import by.innowise.course.exception.UserCardsLimitExceededException;
 import by.innowise.course.exception.UserNotFoundException;
@@ -14,6 +15,7 @@ import by.innowise.course.repository.UserRepository;
 import by.innowise.course.utils.TestDataFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -22,8 +24,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +33,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -70,17 +74,34 @@ class PaymentCardServiceImplTest {
         verify(paymentCardRepository, never()).save(any());
     }
 
+    @Test
+    void shouldThrowWhenCardWithNumberAlreadyExist() {
+        Long userId = 1L;
+        PaymentCardRequestDto dto = new PaymentCardRequestDto();
+        dto.setNumber("111111111111111");
+
+        when(paymentCardRepository.existsByNumber(dto.getNumber()))
+                .thenReturn(true);
+        assertThrows(
+                CardWithNumberAlreadyExistException.class,
+                () -> service.create(userId, dto)
+        );
+        verify(paymentCardRepository, never()).save(any());
+        verify(paymentCardMapper, never()).toEntity(any());
+    }
 
     @Test
     void shouldThrowWhenCardLimitExceeded() {
         Long userId = 1L;
         PaymentCardRequestDto dto = new PaymentCardRequestDto();
-
+        dto.setNumber("111111111111111");
         User user = new User();
 
+
+        when(paymentCardRepository.existsByNumber(dto.getNumber()))
+                .thenReturn(false);
         when(userRepository.findByIdForUpdate(userId))
                 .thenReturn(Optional.of(user));
-
         when(paymentCardRepository.countByUserId(userId))
                 .thenReturn(5L);
 
@@ -101,9 +122,11 @@ class PaymentCardServiceImplTest {
         User user = TestDataFactory.createUser();
         PaymentCard card = TestDataFactory.createPaymentCard();
         PaymentCard saved = TestDataFactory.createPaymentCard();
-        ;
+
         PaymentCardResponseDto response = new PaymentCardResponseDto();
 
+        when(paymentCardRepository.existsByNumber(dto.getNumber()))
+                .thenReturn(false);
         when(userRepository.findByIdForUpdate(userId))
                 .thenReturn(Optional.of(user));
 
@@ -123,7 +146,7 @@ class PaymentCardServiceImplTest {
 
         assertNotNull(result);
 
-        assertEquals(result, response);
+        assertEquals(response, result);
     }
 
     @Test
@@ -156,7 +179,9 @@ class PaymentCardServiceImplTest {
         Page<PaymentCard> page =
                 new PageImpl<>(List.of(card));
 
-        when(paymentCardRepository.findAll(pageable))
+        when(paymentCardRepository.findAll(
+                ArgumentMatchers.<Specification<PaymentCard>>any(),
+                eq(pageable)))
                 .thenReturn(page);
 
         when(paymentCardMapper.toDto(card))
@@ -168,8 +193,7 @@ class PaymentCardServiceImplTest {
         assertNotNull(result);
         assertEquals(1, result.getContent().size());
 
-        verify(paymentCardRepository).findAll(pageable);
-        verify(paymentCardMapper).toDto(card);
+        assertEquals(dto, result.getContent().getFirst());
     }
 
     @Test
@@ -270,21 +294,41 @@ class PaymentCardServiceImplTest {
         verify(paymentCardMapper, never()).toDto(any());
     }
 
+    @Test
+    void shouldThrowWhenNumberIsExistInUpdate() {
+        Long id = 1L;
+        PaymentCardRequestDto dto = TestDataFactory.createPaymentCardRequestDto();
+        PaymentCard paymentCard = TestDataFactory.createPaymentCard();
+        paymentCard.setNumber("555566664444");
+        when(paymentCardRepository.findById(id))
+                .thenReturn(Optional.of(paymentCard));
+        when(paymentCardRepository.existsByNumber(paymentCard.getNumber()))
+                .thenReturn(true);
+
+        assertThrows(
+                CardWithNumberAlreadyExistException.class,
+                () -> service.update(id, dto)
+        );
+
+        verify(paymentCardRepository, never()).save(any());
+        verify(paymentCardMapper, never()).toDto(any());
+    }
 
     @Test
     void shouldUpdateCardSuccessfully() {
         Long id = 1L;
         PaymentCardRequestDto dto = TestDataFactory.createPaymentCardRequestDto();
-        dto.setExpirationDate(LocalDate.now().plusYears(1));
+        dto.setNumber("1");
         PaymentCard card = TestDataFactory.createPaymentCard();
-
         PaymentCard saved = TestDataFactory.createPaymentCard();
 
         PaymentCardResponseDto response = TestDataFactory.createPaymentCardResponseDto();
-        response.setExpirationDate(LocalDate.now().plusYears(1));
+        response.setNumber("1");
+
         when(paymentCardRepository.findById(id))
                 .thenReturn(Optional.of(card));
-
+        when(paymentCardRepository.existsByNumber(dto.getNumber()))
+                .thenReturn(false);
         when(paymentCardRepository.save(card))
                 .thenReturn(saved);
 
@@ -295,9 +339,8 @@ class PaymentCardServiceImplTest {
                 service.update(id, dto);
 
         assertNotNull(result);
-
-        assertEquals(result, response);
-
+        boolean compare = response.equals(result);
+        assertTrue(compare);
     }
 
     @Test
@@ -385,4 +428,5 @@ class PaymentCardServiceImplTest {
         verify(paymentCardRepository, never()).save(any());
         verify(paymentCardRepository, never()).delete(any(PaymentCard.class));
     }
+
 }

@@ -45,6 +45,7 @@ class UserControllerIntegrationTest {
     static GenericContainer<?> redis =
             new GenericContainer<>("redis:7")
                     .withExposedPorts(6379);
+
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
 
@@ -162,6 +163,18 @@ class UserControllerIntegrationTest {
                 .andExpect(status().isBadRequest());
 
         request.setBirthDate(LocalDate.now());
+        mockMvc.perform(post("/api/v1/users")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest());
+
+        request.setEmail("123");
+        mockMvc.perform(post("/api/v1/users")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest());
+
+        request.setEmail("123@");
         mockMvc.perform(post("/api/v1/users")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))

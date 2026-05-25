@@ -76,7 +76,7 @@ class CardsControllerIntegrationTest {
                 .asLong();
         PaymentCardRequestDto cardResponseDto = TestDataFactory.createPaymentCardRequestDto();
 
-        String paymentCardResponseDto = mockMvc.perform(post("/api/v1/cards/user/" + userId)
+        String paymentCardResponseDto = mockMvc.perform(post("/api/v1/users/" + userId + "/payment-cards")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(cardResponseDto)))
                 .andExpect(status().isCreated())
@@ -98,13 +98,13 @@ class CardsControllerIntegrationTest {
 
         for (int i = 0; i < 4; i++) {
             cardResponseDto.setNumber(new StringBuilder().repeat(String.valueOf(i), 15).toString());
-            mockMvc.perform(post("/api/v1/cards/user/" + userId)
+            mockMvc.perform(post("/api/v1/users" + userId + "/payment-cards")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(objectMapper.writeValueAsString(cardResponseDto)))
                     .andExpect(status().isCreated());
         }
         cardResponseDto.setNumber(new StringBuilder().repeat(String.valueOf(6), 15).toString());
-        mockMvc.perform(post("/api/v1/cards/user/" + userId)
+        mockMvc.perform(post("/api/v1/users/" + userId + "/payment-cards")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(cardResponseDto)))
                 .andExpect(status().isConflict());
