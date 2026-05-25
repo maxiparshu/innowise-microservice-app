@@ -33,12 +33,13 @@ public interface UserRepository extends JpaRepository<User, Long>
 
     @Query(
             value = """
-                    SELECT *
-                    FROM users u
-                    LEFT JOIN payment_cards pc
-                        ON u.id = pc.user_id
-                    WHERE pc.id IS NULL
-                    """,
+                SELECT  u.id, u.name, u.surname, u.birth_date, u.email, u.active, u.created_at, u.updated_at
+                FROM users u
+                LEFT JOIN payment_cards pc
+                    ON u.id = pc.user_id
+                WHERE pc.id IS NULL
+                """,
+            countQuery = "SELECT count(*) FROM users u LEFT JOIN payment_cards pc ON u.id = pc.user_id WHERE pc.id IS NULL",
             nativeQuery = true
     )
     Page<User> findUsersWithoutCards(Pageable pageable);

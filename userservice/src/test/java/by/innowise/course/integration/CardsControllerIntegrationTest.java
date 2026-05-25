@@ -18,8 +18,6 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import java.time.LocalDate;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
@@ -135,7 +133,17 @@ class CardsControllerIntegrationTest {
                         .content(objectMapper.writeValueAsString(updateCardNormal)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.holder").value(updateCardNormal.getHolder()));
+        mockMvc.perform(patch("/api/v1/cards/" + userId + "/deactivate"))
+                .andExpect(status().isNoContent());
 
+        mockMvc.perform(get("/api/v1/cards/active")
+                        .param("page", "0")
+                        .param("size", "10"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content.length()").value(4));
+
+        mockMvc.perform(patch("/api/v1/cards/" + userId + "/activate"))
+                .andExpect(status().isNoContent());
         mockMvc.perform(delete("/api/v1/cards/" + cardId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(updateCardNormal)))

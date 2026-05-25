@@ -70,6 +70,12 @@ class UserControllerIntegrationTest {
     void successfulUserScenario() throws Exception {
 
         UserRequestDto request = TestDataFactory.createUserRequestDto();
+
+        mockMvc.perform(post("/api/v1/users")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isCreated());
+
         request.setEmail("test@mail.ru");
 
         String createResponse = mockMvc.perform(post("/api/v1/users")
@@ -129,8 +135,20 @@ class UserControllerIntegrationTest {
         Assertions.assertNotNull(
                 cachedValue
         );
+        mockMvc.perform(get("/api/v1/users/without-cards")
+                        .param("page", "0")
+                        .param("size", "10"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content.length()").value(2));
+
         mockMvc.perform(patch("/api/v1/users/" + userId + "/deactivate"))
                 .andExpect(status().isNoContent());
+
+        mockMvc.perform(get("/api/v1/users/active")
+                        .param("page", "0")
+                        .param("size", "10"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content.length()").value(1));
 
         mockMvc.perform(patch("/api/v1/users/" + userId + "/activate"))
                 .andExpect(status().isNoContent());
@@ -138,8 +156,16 @@ class UserControllerIntegrationTest {
         mockMvc.perform(delete("/api/v1/users/" + userId)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
+
         mockMvc.perform(get("/api/v1/users/" + userId))
                 .andExpect(status().isNotFound());
+
+        mockMvc.perform(get("/api/v1/users")
+                        .param("page", "0")
+                        .param("size", "10"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content.length()").value(1));
+
     }
 
     @Test

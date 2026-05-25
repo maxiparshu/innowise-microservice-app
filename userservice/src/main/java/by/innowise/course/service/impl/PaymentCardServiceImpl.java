@@ -74,7 +74,7 @@ public class PaymentCardServiceImpl implements PaymentCardService {
             String userName, String userSurname, Pageable pageable) {
         Specification<PaymentCard> specification =
                 Specification.where(PaymentCardSpecification.hasUserName(userName))
-                        .and(PaymentCardSpecification.hasUserName(userSurname));
+                        .and(PaymentCardSpecification.hasUserSurname(userSurname));
 
         return paymentCardRepository.findAll(specification, pageable)
                 .map(paymentCardMapper::toDto);

@@ -84,6 +84,7 @@ public class UserController {
                 PageRequest.of(page, size)
         ));
     }
+
     @GetMapping("/{userId}/payment-cards")
     public Page<PaymentCardResponseDto> readAllByUserId(
             @PathVariable @Positive Long userId,
@@ -114,7 +115,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}/activate")
-    public ResponseEntity<?> activate(
+    public ResponseEntity<Void> activate(
             @Positive(message = "Id must be positive") @PathVariable Long id
     ) {
         userService.activate(id);
@@ -122,7 +123,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}/deactivate")
-    public ResponseEntity<?> deactivate(
+    public ResponseEntity<Void> deactivate(
             @Positive(message = "Id must be positive") @PathVariable Long id
     ) {
 
@@ -131,7 +132,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(
+    public ResponseEntity<Void> delete(
             @Positive(message = "Id must be positive") @PathVariable Long id
     ) {
 

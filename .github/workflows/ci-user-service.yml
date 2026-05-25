@@ -25,8 +25,8 @@ jobs:
       - name: Grant permission
         run: chmod +x gradlew
 
-      - name: Build + Test
-        run: ./gradlew :userservice:clean build
+      - name: Test
+        run: ./gradlew :userservice:clean test
 
       - name: SonarQube
         run: ./gradlew :userservice:sonar
