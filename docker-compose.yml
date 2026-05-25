@@ -33,7 +33,7 @@ services:
     container_name: user-service
 
     env_file:
-      ./userservice/.env
+      ./userservice/.docker.env
 
     depends_on:
       - postgres

@@ -4,9 +4,13 @@ import by.innowise.course.entity.PaymentCard;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-public interface PaymentCardRepository extends JpaRepository<PaymentCard, Long> {
+@Repository
+public interface PaymentCardRepository extends JpaRepository<PaymentCard, Long>
+        , JpaSpecificationExecutor<PaymentCard> {
 
     long countByUserId(Long userId);
 

@@ -3,12 +3,5 @@ spring:
     activate:
       on-profile: local
 
-  datasource:
-    url: ${DB_URL_LOCAL}
-
-  data:
-    redis:
-      host: localhost
-
 server:
   port: 8020

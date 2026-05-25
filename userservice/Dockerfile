@@ -1,8 +1,16 @@
-FROM eclipse-temurin:21-jdk
+FROM eclipse-temurin:21-jdk AS builder
 
 WORKDIR /app
 
-COPY build/libs/*.jar app.jar
+COPY . .
+
+RUN ./gradlew bootJar
+
+FROM eclipse-temurin:21-jre
+
+WORKDIR /app
+
+COPY --from=builder /app/build/libs/*.jar app.jar
 
 EXPOSE 8001
 

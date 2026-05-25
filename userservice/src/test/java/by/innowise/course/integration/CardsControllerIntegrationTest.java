@@ -40,11 +40,6 @@ class CardsControllerIntegrationTest {
             new GenericContainer<>("redis:7")
                     .withExposedPorts(6379);
 
-    static {
-        postgres.start();
-        redis.start();
-    }
-
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
 

@@ -14,7 +14,7 @@ public interface PaymentCardService {
     PaymentCardResponseDto readById(Long id);
 
     Page<PaymentCardResponseDto> readAll(
-            Pageable pageable
+            String userName, String userSurname, Pageable pageable
     );
 
     Page<PaymentCardResponseDto> readAllByUserId(Long userId, Pageable pageable);

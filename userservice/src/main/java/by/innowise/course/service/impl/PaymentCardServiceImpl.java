@@ -11,10 +11,12 @@ import by.innowise.course.mapper.PaymentCardMapper;
 import by.innowise.course.repository.PaymentCardRepository;
 import by.innowise.course.repository.UserRepository;
 import by.innowise.course.service.PaymentCardService;
+import by.innowise.course.specification.PaymentCardSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -62,9 +64,13 @@ public class PaymentCardServiceImpl implements PaymentCardService {
     }
 
     @Override
-    public Page<PaymentCardResponseDto> readAll(Pageable pageable) {
+    public Page<PaymentCardResponseDto> readAll(
+            String userName, String userSurname, Pageable pageable) {
+        Specification<PaymentCard> specification =
+                Specification.where(PaymentCardSpecification.hasUserName(userName))
+                        .and(PaymentCardSpecification.hasUserName(userSurname));
 
-        return paymentCardRepository.findAll(pageable)
+        return paymentCardRepository.findAll(specification, pageable)
                 .map(paymentCardMapper::toDto);
     }
 

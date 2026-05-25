@@ -111,7 +111,7 @@ public class UserServiceImpl implements UserService {
             value = "users",
             key = "#id"
     )
-    public void activate(Long id) {
+    public UserResponseDto activate(Long id) {
 
         User user = userRepository.findById(id)
                 .orElseThrow(()
@@ -119,7 +119,7 @@ public class UserServiceImpl implements UserService {
                 );
 
         user.setActive(true);
-        userMapper.toDto(userRepository.save(user));
+        return userMapper.toDto(userRepository.save(user));
     }
 
     @Override
@@ -128,7 +128,7 @@ public class UserServiceImpl implements UserService {
             value = "users",
             key = "#id"
     )
-    public void deactivate(Long id) {
+    public UserResponseDto deactivate(Long id) {
 
         User user = userRepository.findById(id)
                 .orElseThrow(()
@@ -136,7 +136,7 @@ public class UserServiceImpl implements UserService {
                 );
 
         user.setActive(false);
-        userMapper.toDto(userRepository.save(user));
+        return userMapper.toDto(userRepository.save(user));
     }
 
     @Override

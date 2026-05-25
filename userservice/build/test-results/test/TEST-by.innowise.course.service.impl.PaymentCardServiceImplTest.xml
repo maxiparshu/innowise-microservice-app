@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="by.innowise.course.service.impl.PaymentCardServiceImplTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-05-24T05:47:35.759Z" hostname="DESKTOP-9JA1CS0" time="1.235">
+  <properties/>
+  <testcase name="shouldThrowWhenCardNotFound()" classname="by.innowise.course.service.impl.PaymentCardServiceImplTest" time="1.094"/>
+  <testcase name="shouldCreateCardSuccessfully()" classname="by.innowise.course.service.impl.PaymentCardServiceImplTest" time="0.011"/>
+  <testcase name="shouldDeactivateCard()" classname="by.innowise.course.service.impl.PaymentCardServiceImplTest" time="0.01"/>
+  <testcase name="shouldReturnAllCards()" classname="by.innowise.course.service.impl.PaymentCardServiceImplTest" time="0.01"/>
+  <testcase name="shouldReturnCardsExpiringSoon()" classname="by.innowise.course.service.impl.PaymentCardServiceImplTest" time="0.008"/>
+  <testcase name="shouldThrowUserNotFound()" classname="by.innowise.course.service.impl.PaymentCardServiceImplTest" time="0.006"/>
+  <testcase name="shouldDeleteCard()" classname="by.innowise.course.service.impl.PaymentCardServiceImplTest" time="0.007"/>
+  <testcase name="shouldThrowWhenCardLimitExceeded()" classname="by.innowise.course.service.impl.PaymentCardServiceImplTest" time="0.008"/>
+  <testcase name="shouldActivateCard()" classname="by.innowise.course.service.impl.PaymentCardServiceImplTest" time="0.007"/>
+  <testcase name="shouldUpdateCardSuccessfully()" classname="by.innowise.course.service.impl.PaymentCardServiceImplTest" time="0.008"/>
+  <testcase name="shouldReturnActiveCards()" classname="by.innowise.course.service.impl.PaymentCardServiceImplTest" time="0.007"/>
+  <testcase name="shouldReturnCardsByUserId()" classname="by.innowise.course.service.impl.PaymentCardServiceImplTest" time="0.009"/>
+  <testcase name="shouldThrowWhenCardNotFoundInUpdate()" classname="by.innowise.course.service.impl.PaymentCardServiceImplTest" time="0.01"/>
+  <testcase name="shouldReturnCardById()" classname="by.innowise.course.service.impl.PaymentCardServiceImplTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

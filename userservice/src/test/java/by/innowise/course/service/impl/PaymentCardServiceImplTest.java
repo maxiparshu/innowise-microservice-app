@@ -163,7 +163,7 @@ class PaymentCardServiceImplTest {
                 .thenReturn(dto);
 
         Page<PaymentCardResponseDto> result =
-                service.readAll(pageable);
+                service.readAll("", "", pageable);
 
         assertNotNull(result);
         assertEquals(1, result.getContent().size());
@@ -383,6 +383,6 @@ class PaymentCardServiceImplTest {
 
         verify(paymentCardMapper, never()).toDto(any());
         verify(paymentCardRepository, never()).save(any());
-        verify(paymentCardRepository, never()).delete(any());
+        verify(paymentCardRepository, never()).delete(any(PaymentCard.class));
     }
 }

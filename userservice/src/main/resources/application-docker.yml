@@ -2,10 +2,3 @@ spring:
   config:
     activate:
       on-profile: docker
-
-  datasource:
-    url: ${DB_URL_DOCKER}
-
-  data:
-    redis:
-      host: redis

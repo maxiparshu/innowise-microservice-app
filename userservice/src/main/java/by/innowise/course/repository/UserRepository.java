@@ -4,6 +4,7 @@ import by.innowise.course.entity.User;
 import jakarta.persistence.LockModeType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Lock;
@@ -16,6 +17,8 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long>
         , JpaSpecificationExecutor<User> {
     boolean existsByEmail(String email);
+    @EntityGraph(attributePaths = "paymentCards")
+    Optional<User> findById(Long id);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select u from User u where u.id = :id")
