@@ -28,7 +28,8 @@ services:
 
   user-service:
     build:
-      context: ./userservice
+      context: .
+      dockerfile: userservice/Dockerfile
 
     container_name: user-service
 
