@@ -1,0 +1,15 @@
+.gradle
+**.env
+
+**/build/**
+build
+src
+!userservice/src
+.idea
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
