@@ -75,7 +75,7 @@ class JwtServiceTest {
     }
 
     @Test
-    void shouldReturnFalseForExpiredToken() throws InterruptedException {
+    void shouldReturnFalseForExpiredToken() {
         JwtService shortExpirationService = new JwtService();
 
         ReflectionTestUtils.setField(

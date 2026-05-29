@@ -12,13 +12,16 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class PaymentCardRequestDtoTest {
+class PaymentCardRequestDtoTest {
     @ParameterizedTest
     @MethodSource("equalObjectsProvider")
     void shouldReturnTrueForEqualsAndSameHashCode(PaymentCardRequestDto first,
                                                   PaymentCardRequestDto second) {
         assertEquals(first.hashCode(), first.hashCode());
         assertEquals(first, second);
+        assertEquals(second, first);
+        assertEquals(first, first);
+        assertEquals(first,second);
         assertEquals(first.hashCode(), second.hashCode());
         assertEquals(first.toString(), second.toString());
     }

@@ -14,7 +14,11 @@ class ValidateTokenResponseTest {
         ValidateTokenResponse r2 =
                 new ValidateTokenResponse(true, 1L, "USER");
 
+        assertEquals(r1.hashCode(), r1.hashCode());
         assertEquals(r1, r2);
+        assertEquals(r2, r1);
+        assertEquals(r1, r1);
+        assertEquals(r1,r2);
         assertEquals(r1.hashCode(), r2.hashCode());
         assertEquals(r1.toString(), r2.toString());
 

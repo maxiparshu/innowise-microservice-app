@@ -21,6 +21,9 @@ class PaymentCardResponseDtoTest {
                                                   PaymentCardResponseDto second) {
         assertEquals(first.hashCode(), first.hashCode());
         assertEquals(first, second);
+        assertEquals(second, first);
+        assertEquals(first, first);
+        assertEquals(first,second);
         assertEquals(first.hashCode(), second.hashCode());
         assertEquals(first.toString(), second.toString());
     }

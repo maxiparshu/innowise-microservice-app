@@ -25,7 +25,11 @@ class RefreshTokenRequestTest {
         RefreshTokenRequest r2 = new RefreshTokenRequest();
         r2.setRefreshToken("token");
 
+        assertEquals(r1.hashCode(), r1.hashCode());
         assertEquals(r1, r2);
+        assertEquals(r2, r1);
+        assertEquals(r1, r1);
+        assertEquals(r1,r2);
         assertEquals(r1.hashCode(), r2.hashCode());
         assertEquals(r1.toString(), r2.toString());
 
