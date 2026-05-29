@@ -1,16 +1,16 @@
 package by.innowise.course.dto;
 
 import by.innowise.course.utils.TestDataFactory;
-import junit.framework.TestCase;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class UserRequestDtoTest extends TestCase {
+class UserRequestDtoTest {
     @ParameterizedTest
     @MethodSource("equalObjectsProvider")
     void shouldReturnTrueForEqualsAndSameHashCode(UserRequestDto first,
@@ -26,7 +26,7 @@ public class UserRequestDtoTest extends TestCase {
     void shouldReturnFalseForEquals(UserRequestDto first,
                                     UserRequestDto second) {
         assertNotEquals(first, second);
-        assertNotEquals(first, null);
+        assertNotEquals(null, first);
     }
 
     private static Stream<Arguments> equalObjectsProvider() {

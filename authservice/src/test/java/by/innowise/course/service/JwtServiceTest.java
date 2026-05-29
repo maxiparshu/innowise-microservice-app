@@ -87,7 +87,7 @@ class JwtServiceTest {
         ReflectionTestUtils.setField(
                 shortExpirationService,
                 "expiration",
-                1L
+                0L
         );
 
         UserCredential user = mock(UserCredential.class);
@@ -97,8 +97,6 @@ class JwtServiceTest {
         when(user.getRole()).thenReturn(Role.ADMIN);
 
         String token = shortExpirationService.generateAccessToken(user);
-
-        Thread.sleep(5);
 
         assertFalse(shortExpirationService.isValid(token));
     }

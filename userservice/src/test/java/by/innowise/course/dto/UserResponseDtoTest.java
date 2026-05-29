@@ -30,7 +30,7 @@ class UserResponseDtoTest {
     void shouldReturnFalseForEquals(UserResponseDto first,
                                     UserResponseDto second) {
         assertNotEquals(first, second);
-        assertNotEquals(first, null);
+        assertNotEquals(null, first);
     }
 
     private static Stream<Arguments> equalObjectsProvider() {

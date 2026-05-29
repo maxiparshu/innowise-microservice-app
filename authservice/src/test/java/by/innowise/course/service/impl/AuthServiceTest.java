@@ -38,7 +38,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class AuthServiceTest {
+class AuthServiceTest {
 
     @Mock
     private RefreshTokenRepository refreshTokenRepository;
@@ -58,7 +58,7 @@ public class AuthServiceTest {
     private UserCredential user;
 
     @BeforeEach
-    protected void setUp() {
+    void setUp() {
         user = new UserCredential();
         user.setUserId(1L);
         user.setLogin("john");

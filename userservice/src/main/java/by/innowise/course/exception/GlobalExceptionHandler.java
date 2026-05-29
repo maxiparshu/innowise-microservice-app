@@ -2,7 +2,6 @@ package by.innowise.course.exception;
 
 import by.innowise.course.dto.ErrorResponseDto;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

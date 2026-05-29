@@ -4,6 +4,7 @@ import by.innowise.course.dto.LoginRequest;
 import by.innowise.course.dto.RefreshTokenRequest;
 import by.innowise.course.dto.RegisterRequest;
 import by.innowise.course.dto.TokenResponse;
+import by.innowise.course.dto.ValidateTokenResponse;
 import by.innowise.course.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -47,7 +48,7 @@ public class AuthController {
     }
 
     @GetMapping("/validate")
-    public ResponseEntity<?> validate(
+    public ResponseEntity<ValidateTokenResponse> validate(
             @RequestHeader("Authorization") String token
     ) {
 

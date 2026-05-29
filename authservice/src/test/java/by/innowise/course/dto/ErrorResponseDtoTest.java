@@ -1,6 +1,5 @@
 package by.innowise.course.dto;
 
-import by.innowise.course.dto.ErrorResponseDto;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -30,7 +29,7 @@ class ErrorResponseDtoTest {
                                     ErrorResponseDto second) {
 
         assertNotEquals(first, second);
-        assertNotEquals(first, null);
+        assertNotEquals(null, first);
     }
 
     private static Stream<Arguments> equalObjectsProvider() {
@@ -73,7 +72,7 @@ class ErrorResponseDtoTest {
                 "INTERNAL_SERVER_ERROR",
                 "Resource not found"
         );
-        ErrorResponseDto differentStatus  = createError(
+        ErrorResponseDto differentStatus = createError(
                 now,
                 501,
                 "INTERNAL_SERVER_ERROR",

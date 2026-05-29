@@ -30,7 +30,7 @@ class PaymentCardResponseDtoTest {
     void shouldReturnFalseForEquals(PaymentCardResponseDto first,
                                     PaymentCardResponseDto second) {
         assertNotEquals(first, second);
-        assertNotEquals(first, null);
+        assertNotEquals(null, first);
     }
 
     private static Stream<Arguments> equalObjectsProvider() {

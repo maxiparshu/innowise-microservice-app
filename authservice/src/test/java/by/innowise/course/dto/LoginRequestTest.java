@@ -6,8 +6,12 @@ import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Set;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,7 +21,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class LoginRequestTest {
 
     private static Validator validator;
-
+    static Stream<Arguments> invalidRequests() {
+        return Stream.of(
+                Arguments.of(build("", "Password1")),
+                Arguments.of(build("john", "")),
+                Arguments.of(build("john", "123"))
+        );
+    }
     @BeforeAll
     static void setUp() {
 
@@ -60,46 +70,14 @@ class LoginRequestTest {
 
         assertNotEquals(base, r1);
         assertNotEquals(base, r2);
+        assertNotEquals(null, r1);
+    }
+    @ParameterizedTest
+    @MethodSource("invalidRequests")
+    void shouldFailValidation(LoginRequest request) {
+        assertFalse(validator.validate(request).isEmpty());
     }
 
-    @Test
-    void shouldFailWhenLoginBlank() {
-
-        LoginRequest request = new LoginRequest();
-        request.setLogin("");
-        request.setPassword("Password1");
-
-        Set<ConstraintViolation<LoginRequest>> violations =
-                validator.validate(request);
-
-        assertFalse(violations.isEmpty());
-    }
-
-    @Test
-    void shouldFailWhenPasswordBlank() {
-
-        LoginRequest request = new LoginRequest();
-        request.setLogin("john");
-        request.setPassword("");
-
-        Set<ConstraintViolation<LoginRequest>> violations =
-                validator.validate(request);
-
-        assertFalse(violations.isEmpty());
-    }
-
-    @Test
-    void shouldFailWhenPasswordInvalid() {
-
-        LoginRequest request = new LoginRequest();
-        request.setLogin("john");
-        request.setPassword("123");
-
-        Set<ConstraintViolation<LoginRequest>> violations =
-                validator.validate(request);
-
-        assertFalse(violations.isEmpty());
-    }
 
     @Test
     void shouldPassValidationWhenRequestValid() {
@@ -112,5 +90,12 @@ class LoginRequestTest {
                 validator.validate(request);
 
         assertTrue(violations.isEmpty());
+    }
+
+    private static LoginRequest build(String login, String password) {
+        LoginRequest r = new LoginRequest();
+        r.setLogin(login);
+        r.setPassword(password);
+        return r;
     }
 }

@@ -6,8 +6,12 @@ import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Set;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,6 +21,26 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class RegisterRequestTest {
 
     private static Validator validator;
+
+    static Stream<Arguments> invalidRequests() {
+        return Stream.of(
+                Arguments.of(
+                        build(null, "john", "Password1")
+                ),
+                Arguments.of(
+                        build(-1L, "john", "Password1")
+                ),
+                Arguments.of(
+                        build(1L, "", "Password1")
+                ),
+                Arguments.of(
+                        build(1L, "john", "")
+                ),
+                Arguments.of(
+                        build(1L, "john", "123")
+                )
+        );
+    }
 
     @BeforeAll
     static void setUp() {
@@ -42,6 +66,9 @@ class RegisterRequestTest {
         assertEquals(r1, r2);
         assertEquals(r1.hashCode(), r2.hashCode());
         assertEquals(r1.toString(), r2.toString());
+
+        assertNotEquals(null, r1);
+
 
     }
 
@@ -75,75 +102,6 @@ class RegisterRequestTest {
         assertNotEquals(r1, r4);
     }
 
-    @Test
-    void shouldFailWhenUserIdNull() {
-
-        RegisterRequest request = new RegisterRequest();
-        request.setUserId(null);
-        request.setLogin("john");
-        request.setPassword("Password1");
-
-        Set<ConstraintViolation<RegisterRequest>> violations =
-                validator.validate(request);
-
-        assertFalse(violations.isEmpty());
-    }
-
-    @Test
-    void shouldFailWhenUserIdNegative() {
-
-        RegisterRequest request = new RegisterRequest();
-        request.setUserId(-1L);
-        request.setLogin("john");
-        request.setPassword("Password1");
-
-        Set<ConstraintViolation<RegisterRequest>> violations =
-                validator.validate(request);
-
-        assertFalse(violations.isEmpty());
-    }
-
-    @Test
-    void shouldFailWhenLoginBlank() {
-
-        RegisterRequest request = new RegisterRequest();
-        request.setUserId(1L);
-        request.setLogin("");
-        request.setPassword("Password1");
-
-        Set<ConstraintViolation<RegisterRequest>> violations =
-                validator.validate(request);
-
-        assertFalse(violations.isEmpty());
-    }
-
-    @Test
-    void shouldFailWhenPasswordBlank() {
-
-        RegisterRequest request = new RegisterRequest();
-        request.setUserId(1L);
-        request.setLogin("john");
-        request.setPassword("");
-
-        Set<ConstraintViolation<RegisterRequest>> violations =
-                validator.validate(request);
-
-        assertFalse(violations.isEmpty());
-    }
-
-    @Test
-    void shouldFailWhenPasswordInvalid() {
-
-        RegisterRequest request = new RegisterRequest();
-        request.setUserId(1L);
-        request.setLogin("john");
-        request.setPassword("123");
-
-        Set<ConstraintViolation<RegisterRequest>> violations =
-                validator.validate(request);
-
-        assertFalse(violations.isEmpty());
-    }
 
     @Test
     void shouldPassValidationWhenRequestValid() {
@@ -157,5 +115,22 @@ class RegisterRequestTest {
                 validator.validate(request);
 
         assertTrue(violations.isEmpty());
+    }
+    @ParameterizedTest
+    @MethodSource("invalidRequests")
+    void shouldFailValidation(RegisterRequest request) {
+
+        Set<ConstraintViolation<RegisterRequest>> violations =
+                validator.validate(request);
+
+        assertFalse(violations.isEmpty());
+    }
+
+    private static RegisterRequest build(Long userId, String login, String password) {
+        RegisterRequest r = new RegisterRequest();
+        r.setUserId(userId);
+        r.setLogin(login);
+        r.setPassword(password);
+        return r;
     }
 }

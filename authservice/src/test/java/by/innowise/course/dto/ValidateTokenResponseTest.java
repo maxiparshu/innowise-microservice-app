@@ -17,6 +17,8 @@ class ValidateTokenResponseTest {
         assertEquals(r1, r2);
         assertEquals(r1.hashCode(), r2.hashCode());
         assertEquals(r1.toString(), r2.toString());
+
+        assertNotEquals(null, r1);
     }
 
     @Test

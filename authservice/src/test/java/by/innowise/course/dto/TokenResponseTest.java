@@ -20,6 +20,8 @@ class TokenResponseTest {
         assertEquals(r1, r2);
         assertEquals(r1.toString(), r2.toString());
         assertEquals(r1.hashCode(), r2.hashCode());
+
+        assertNotEquals(null, r1);
     }
 
     @Test
