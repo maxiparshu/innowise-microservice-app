@@ -2,8 +2,7 @@ package by.innowise.course.exception;
 
 import by.innowise.course.dto.ErrorResponseDto;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -13,38 +12,10 @@ import java.time.LocalDateTime;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    @ExceptionHandler(UserNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponseDto handleUserNotFound(
-            UserNotFoundException ex
-    ) {
-
-        return ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now())
-                .status(HttpStatus.NOT_FOUND.value())
-                .error(HttpStatus.NOT_FOUND.getReasonPhrase())
-                .message(ex.getMessage())
-                .build();
-    }
-
-    @ExceptionHandler(PaymentCardNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponseDto handleCardNotFound(
-            PaymentCardNotFoundException ex
-    ) {
-
-        return ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now())
-                .status(HttpStatus.NOT_FOUND.value())
-                .error(HttpStatus.NOT_FOUND.getReasonPhrase())
-                .message(ex.getMessage())
-                .build();
-    }
-
-    @ExceptionHandler(UserWithEmailAlreadyExistException.class)
+    @ExceptionHandler(CredentialAlreadyExistException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public ErrorResponseDto handleUserWithEmailAlreadyExist(
-            UserWithEmailAlreadyExistException ex
+    public ErrorResponseDto handleCredentialAlreadyExistException(
+            CredentialAlreadyExistException ex
     ) {
 
         return ErrorResponseDto.builder()
@@ -55,24 +26,25 @@ public class GlobalExceptionHandler {
                 .build();
     }
 
-    @ExceptionHandler(CardWithNumberAlreadyExistException.class)
+    @ExceptionHandler(BadCredentialsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponseDto handleBadCredentialsException(
+            BadCredentialsException ex
+    ) {
+
+        return ErrorResponseDto.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .error(HttpStatus.BAD_REQUEST.getReasonPhrase())
+                .message(ex.getMessage())
+                .build();
+    }
+
+
+    @ExceptionHandler(RefreshTokenException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public ErrorResponseDto handleCardWithExistedNumberExceeded(
-            CardWithNumberAlreadyExistException ex
-    ) {
-
-        return ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now())
-                .status(HttpStatus.CONFLICT.value())
-                .error(HttpStatus.CONFLICT.getReasonPhrase())
-                .message(ex.getMessage())
-                .build();
-    }
-
-    @ExceptionHandler(UserCardsLimitExceededException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    public ErrorResponseDto handleUserCardsLimitExceeded(
-            UserCardsLimitExceededException ex
+            RefreshTokenException ex
     ) {
 
         return ErrorResponseDto.builder()
@@ -105,18 +77,7 @@ public class GlobalExceptionHandler {
                 .message(message)
                 .build();
     }
-    @ExceptionHandler(AccessDeniedException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    public ErrorResponseDto handleAccessDenied(
-            AccessDeniedException ex
-    ) {
-        return ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now())
-                .status(HttpStatus.FORBIDDEN.value())
-                .error(HttpStatus.FORBIDDEN.getReasonPhrase())
-                .message(ex.getMessage())
-                .build();
-    }
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponseDto handleAll(Exception ex) {

@@ -5,6 +5,7 @@
 build
 src
 !userservice/src
+!authservice/src
 .idea
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/

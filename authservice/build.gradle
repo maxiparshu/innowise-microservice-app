@@ -7,18 +7,23 @@ plugins {
 }
 
 group = 'by.innowise.course'
-version = '1.0-SNAPSHOT'
+version = '0.0.1-SNAPSHOT'
+description = 'authservice'
 
-repositories {
-    mavenCentral()
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
-
 sonar {
     properties {
-        property "sonar.projectKey", "maxiparshu_userservice"
+        property "sonar.projectKey", "maxiparshu_authservice"
         property "sonar.organization", "maxiparshu"
         property "sonar.host.url", "https://sonarcloud.io"
     }
+}
+repositories {
+    mavenCentral()
 }
 jacoco {
     toolVersion = "0.8.12"
@@ -33,18 +38,14 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:2.0.13'
 
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-cache'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.projectlombok:lombok:1.18.30'
     implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
 
     annotationProcessor 'org.projectlombok:lombok'
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
-    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 
+    runtimeOnly 'org.postgresql:postgresql'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
-    runtimeOnly 'org.postgresql:postgresql'
 
     compileOnly 'org.projectlombok:lombok'
 
@@ -52,7 +53,6 @@ dependencies {
 
     testImplementation platform('org.testcontainers:testcontainers-bom:1.21.3')
 
-    testImplementation 'org.springframework.security:spring-security-test'
     testImplementation 'org.testcontainers:testcontainers'
     testImplementation 'org.testcontainers:junit-jupiter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

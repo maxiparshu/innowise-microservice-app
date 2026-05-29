@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,7 @@ public class PaymentCardController {
     private final PaymentCardService paymentCardService;
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN') or @accessService.isOwner(#userId)")
     public ResponseEntity<PaymentCardResponseDto> readById(
             @PathVariable @Positive Long id
     ) {
@@ -39,6 +41,7 @@ public class PaymentCardController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Page<PaymentCardResponseDto>> readAll(
             @RequestParam(defaultValue = "0") @PositiveOrZero int page,
             @RequestParam(defaultValue = "10") @Positive int size,
@@ -50,6 +53,7 @@ public class PaymentCardController {
     }
 
     @GetMapping("/active")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Page<PaymentCardResponseDto>> readAllActive(
             @RequestParam(defaultValue = "0") @PositiveOrZero int page,
             @RequestParam(defaultValue = "10") @Positive int size
@@ -59,6 +63,7 @@ public class PaymentCardController {
     }
 
     @GetMapping("/expiring")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Page<PaymentCardResponseDto>> readExpiringSoonCards(
             @RequestParam(defaultValue = "0") @PositiveOrZero int page,
             @RequestParam(defaultValue = "10") @Positive int size
@@ -68,6 +73,7 @@ public class PaymentCardController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN') or @accessService.isOwner(#userId)")
     public ResponseEntity<PaymentCardResponseDto> update(
             @PathVariable @Positive Long id,
             @Valid @RequestBody PaymentCardRequestDto dto
@@ -77,6 +83,7 @@ public class PaymentCardController {
     }
 
     @PatchMapping("/{id}/activate")
+    @PreAuthorize("hasAuthority('ADMIN') or @accessService.isOwner(#userId)")
     public ResponseEntity<Void> activate(
             @PathVariable @Positive Long id
     ) {
@@ -85,6 +92,7 @@ public class PaymentCardController {
     }
 
     @PatchMapping("/{id}/deactivate")
+    @PreAuthorize("hasAuthority('ADMIN') or @accessService.isOwner(#userId)")
     public ResponseEntity<Void> deactivate(
             @PathVariable @Positive Long id
     ) {
@@ -93,6 +101,7 @@ public class PaymentCardController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN') or @accessService.isOwner(#userId)")
     public ResponseEntity<Void> delete(
             @PathVariable @Positive Long id
     ) {
