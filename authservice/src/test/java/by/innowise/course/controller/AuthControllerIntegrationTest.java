@@ -155,13 +155,27 @@ class AuthControllerIntegrationTest {
         RefreshToken refreshToken = new RefreshToken();
         refreshToken.setUserId(1L);
         refreshToken.setToken("refresh-token");
-        refreshToken.setRevoked(false);
+        refreshToken.setRevoked(true);
         refreshToken.setExpiresAt(LocalDateTime.now().plusDays(1));
-
-        refreshTokenRepository.save(refreshToken);
 
         RefreshTokenRequest request = new RefreshTokenRequest();
         request.setRefreshToken("refresh-token");
+
+        mockMvc.perform(post("/auth/refresh")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest());
+
+        refreshTokenRepository.save(refreshToken);
+
+        mockMvc.perform(post("/auth/refresh")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isConflict());
+
+        refreshToken.setRevoked(false);
+
+        refreshTokenRepository.saveAndFlush(refreshToken);
 
         mockMvc.perform(post("/auth/refresh")
                         .contentType(MediaType.APPLICATION_JSON)

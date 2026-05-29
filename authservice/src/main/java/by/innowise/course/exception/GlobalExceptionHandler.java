@@ -43,7 +43,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(RefreshTokenException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public ErrorResponseDto handleCardWithExistedNumberExceeded(
+    public ErrorResponseDto handleRefreshTokenException(
             RefreshTokenException ex
     ) {
 
