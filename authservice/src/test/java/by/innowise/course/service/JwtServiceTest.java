@@ -2,14 +2,16 @@ package by.innowise.course.service;
 
 import by.innowise.course.entity.Role;
 import by.innowise.course.entity.UserCredential;
+import by.innowise.course.security.JwtService;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -71,7 +73,8 @@ class JwtServiceTest {
     void shouldReturnFalseForInvalidToken() {
         String invalidToken = "invalid.token.value";
 
-        assertFalse(jwtService.isValid(invalidToken));
+        assertThrows(JwtException.class,
+                () -> jwtService.isValid(invalidToken));
     }
 
     @Test
@@ -98,6 +101,7 @@ class JwtServiceTest {
 
         String token = shortExpirationService.generateAccessToken(user);
 
-        assertFalse(shortExpirationService.isValid(token));
+        assertThrows(JwtException.class,
+                () -> shortExpirationService.isValid(token));
     }
 }

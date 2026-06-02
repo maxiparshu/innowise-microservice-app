@@ -6,7 +6,6 @@ spring:
     hibernate:
       ddl-auto: validate
 
-    show-sql: true
 
   datasource:
     url: ${DB_URL}
@@ -26,3 +25,7 @@ jwt:
 
 server:
   port: 8002
+
+auth:
+  admin:
+    user-id: -1

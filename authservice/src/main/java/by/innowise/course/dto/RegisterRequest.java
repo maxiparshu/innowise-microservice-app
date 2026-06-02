@@ -1,8 +1,8 @@
 package by.innowise.course.dto;
 
+import by.innowise.course.validation.ValidPassword;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
@@ -13,11 +13,7 @@ public class RegisterRequest {
     private Long userId;
     @NotBlank
     private String login;
-    @NotBlank
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$",
-            message = """
-                    Password must contain: at least 6 characters,\s
-                    one uppercase letter,\s
-                    one lowercase letter, and one digit\s""")
+
+    @ValidPassword
     private String password;
 }

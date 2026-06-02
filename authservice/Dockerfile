@@ -15,6 +15,6 @@ WORKDIR /app
 
 COPY --from=builder /app/authservice/build/libs/*.jar app.jar
 
-EXPOSE 8001
+EXPOSE 8002
 
 ENTRYPOINT ["java", "-jar", "app.jar"]

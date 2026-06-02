@@ -1,4 +1,4 @@
-package by.innowise.course.service;
+package by.innowise.course.security;
 
 import by.innowise.course.entity.UserCredential;
 import io.jsonwebtoken.Claims;
@@ -41,12 +41,8 @@ public class JwtService {
     }
 
     public boolean isValid(String token) {
-        try {
-            extractClaims(token);
-            return true;
-        } catch (Exception ex) {
-            return false;
-        }
+        extractClaims(token);
+        return true;
     }
 
     private SecretKey getSigningKey() {

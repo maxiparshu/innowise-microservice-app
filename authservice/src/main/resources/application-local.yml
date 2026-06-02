@@ -2,6 +2,7 @@ spring:
   config:
     activate:
       on-profile: local
-
+  jpa:
+    show-sql: true
 server:
   port: 8021

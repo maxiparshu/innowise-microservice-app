@@ -12,7 +12,7 @@ import by.innowise.course.exception.CredentialAlreadyExistException;
 import by.innowise.course.exception.RefreshTokenException;
 import by.innowise.course.repository.RefreshTokenRepository;
 import by.innowise.course.repository.UserCredentialRepository;
-import by.innowise.course.service.JwtService;
+import by.innowise.course.security.JwtService;
 import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -215,11 +215,12 @@ class AuthServiceTest {
     @Test
     void shouldValidateTokenSuccessfully() {
         Claims claims = mock(Claims.class);
-
-        when(jwtService.isValid("token"))
+        String token = "token";
+        String tokenWithHeader = "Bearer " + token;
+        when(jwtService.isValid(token))
                 .thenReturn(true);
 
-        when(jwtService.extractClaims("token"))
+        when(jwtService.extractClaims(token))
                 .thenReturn(claims);
 
         when(claims.get("userId", Long.class))
@@ -228,7 +229,7 @@ class AuthServiceTest {
         when(claims.get("role", String.class))
                 .thenReturn("USER");
 
-        ValidateTokenResponse response = authService.validate("token");
+        ValidateTokenResponse response = authService.validate(tokenWithHeader);
 
         assertTrue(response.isValid());
         assertEquals(1L, response.getUserId());
@@ -240,6 +241,14 @@ class AuthServiceTest {
         when(jwtService.isValid("invalid"))
                 .thenReturn(false);
 
+        ValidateTokenResponse response = authService.validate("Bearer invalid");
+
+        assertFalse(response.isValid());
+        assertNull(response.getUserId());
+        assertNull(response.getRole());
+    }
+    @Test
+    void shouldFailWithWrongHeader() {
         ValidateTokenResponse response = authService.validate("invalid");
 
         assertFalse(response.isValid());

@@ -5,7 +5,6 @@ import by.innowise.course.entity.Role;
 import by.innowise.course.entity.UserCredential;
 import by.innowise.course.repository.UserCredentialRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -18,10 +17,10 @@ public class AdminInitializerConfig {
 
 
     private final PasswordEncoder passwordEncoder;
-
     @Value("${jwt.admin-password}")
     private String password;
-
+    @Value("${auth.admin.user-id}")
+    private Long adminUserId;
     @Bean
     public CommandLineRunner initAdmin(UserCredentialRepository repository) {
         return args -> {
@@ -30,7 +29,7 @@ public class AdminInitializerConfig {
                 return;
             }
             UserCredential admin = new UserCredential();
-            admin.setUserId(0L);
+            admin.setUserId(adminUserId);
             admin.setLogin("admin");
             admin.setPasswordHash(passwordEncoder.encode(password));
             admin.setRole(Role.ADMIN);
