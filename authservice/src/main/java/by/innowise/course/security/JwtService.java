@@ -22,15 +22,12 @@ public class JwtService {
     private long expiration;
 
     public String generateAccessToken(UserCredential user) {
-
         return Jwts.builder()
                 .setSubject(user.getLogin())
                 .claim("userId", user.getUserId())
                 .claim("role", user.getRole())
                 .setIssuedAt(new Date())
-                .setExpiration(
-                        new Date(System.currentTimeMillis() + expiration)
-                )
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSigningKey())
                 .compact();
     }
@@ -42,7 +39,6 @@ public class JwtService {
                 .parseClaimsJws(token)
                 .getBody();
     }
-
 
     public boolean isValid(String token) {
         try {
