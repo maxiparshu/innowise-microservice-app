@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,7 @@ public class UserController {
     private final PaymentCardService paymentCardService;
 
     @PostMapping("/{userId}/payment-cards")
+    @PreAuthorize("hasAuthority('ADMIN') or @accessService.isOwner(#userId)")
     public ResponseEntity<PaymentCardResponseDto> create(
             @PathVariable @Positive Long userId,
             @Valid @RequestBody PaymentCardRequestDto dto
@@ -54,6 +56,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN') or @accessService.isOwner(#id)")
     public ResponseEntity<UserResponseDto> readById(
             @Positive(message = "Id must be positive") @PathVariable Long id
     ) {
@@ -63,6 +66,7 @@ public class UserController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Page<UserResponseDto>> readAll(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String surname,
@@ -75,6 +79,7 @@ public class UserController {
     }
 
     @GetMapping("/active")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Page<UserResponseDto>> readActiveUsers(
             @RequestParam(defaultValue = "0") @PositiveOrZero int page,
             @RequestParam(defaultValue = "10") @Positive int size
@@ -86,6 +91,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/payment-cards")
+    @PreAuthorize("hasAuthority('ADMIN') or @accessService.isOwner(#userId)")
     public Page<PaymentCardResponseDto> readAllByUserId(
             @PathVariable @Positive Long userId,
             @RequestParam(defaultValue = "0") @PositiveOrZero int page,
@@ -95,6 +101,7 @@ public class UserController {
     }
 
     @GetMapping("/without-cards")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Page<UserResponseDto>> readUsersWithoutCards(
             @RequestParam(defaultValue = "0") @PositiveOrZero int page,
             @RequestParam(defaultValue = "10") @Positive int size
@@ -106,6 +113,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN') or @accessService.isOwner(#id)")
     public ResponseEntity<UserResponseDto> update(
             @Positive(message = "Id must be positive") @PathVariable Long id,
             @Valid @RequestBody UserRequestDto dto
@@ -115,6 +123,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}/activate")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Void> activate(
             @Positive(message = "Id must be positive") @PathVariable Long id
     ) {
@@ -123,6 +132,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}/deactivate")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Void> deactivate(
             @Positive(message = "Id must be positive") @PathVariable Long id
     ) {
@@ -132,6 +142,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN') or @accessService.isOwner(#id)")
     public ResponseEntity<Void> delete(
             @Positive(message = "Id must be positive") @PathVariable Long id
     ) {
