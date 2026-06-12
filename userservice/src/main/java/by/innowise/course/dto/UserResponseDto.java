@@ -21,6 +21,7 @@ public class UserResponseDto implements Serializable {
     private String email;
 
     private Boolean active;
+
     private List<PaymentCardResponseDto> cards;
 
     private LocalDateTime createdAt;

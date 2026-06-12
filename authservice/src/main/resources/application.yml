@@ -26,6 +26,11 @@ jwt:
 server:
   port: 8002
 
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER}
+
 auth:
   admin:
     user-id: -1

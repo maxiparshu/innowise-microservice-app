@@ -32,7 +32,7 @@ public class PaymentCardController {
     private final PaymentCardService paymentCardService;
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN') or @accessService.isOwner(#userId)")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     public ResponseEntity<PaymentCardResponseDto> readById(
             @PathVariable @Positive Long id
     ) {
@@ -73,7 +73,7 @@ public class PaymentCardController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN') or @accessService.isOwner(#userId)")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<PaymentCardResponseDto> update(
             @PathVariable @Positive Long id,
             @Valid @RequestBody PaymentCardRequestDto dto
@@ -83,7 +83,7 @@ public class PaymentCardController {
     }
 
     @PatchMapping("/{id}/activate")
-    @PreAuthorize("hasAuthority('ADMIN') or @accessService.isOwner(#userId)")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<Void> activate(
             @PathVariable @Positive Long id
     ) {
@@ -92,7 +92,7 @@ public class PaymentCardController {
     }
 
     @PatchMapping("/{id}/deactivate")
-    @PreAuthorize("hasAuthority('ADMIN') or @accessService.isOwner(#userId)")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<Void> deactivate(
             @PathVariable @Positive Long id
     ) {
@@ -101,7 +101,7 @@ public class PaymentCardController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN') or @accessService.isOwner(#userId)")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Void> delete(
             @PathVariable @Positive Long id
     ) {

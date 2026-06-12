@@ -9,12 +9,13 @@ public class PaymentCardSpecification {
     }
 
     public static Specification<PaymentCard> hasUserName(String name) {
-        return (root, query, cb) -> {
+        return (root, query, criteriaBuilder) -> {
             if (name == null || name.isBlank()) {
-                return null;
+                return criteriaBuilder.conjunction();
+
             }
 
-            return cb.equal(
+            return criteriaBuilder.equal(
                     root.join("user").get("name"),
                     name
             );
@@ -22,12 +23,12 @@ public class PaymentCardSpecification {
     }
 
     public static Specification<PaymentCard> hasUserSurname(String surname) {
-        return (root, query, cb) -> {
+        return (root, query, criteriaBuilder) -> {
             if (surname == null || surname.isBlank()) {
-                return null;
+                return criteriaBuilder.conjunction();
             }
 
-            return cb.equal(
+            return criteriaBuilder.equal(
                     root.join("user").get("surname"),
                     surname
             );

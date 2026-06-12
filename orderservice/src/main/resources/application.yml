@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: order-service
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  liquibase:
+    change-log: classpath:db/changelog/db.create-tables.yaml
+    enabled: true
+
+jwt:
+  secret: ${JWT_SECRET}
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER}
+
+server:
+  port: 8003
+
