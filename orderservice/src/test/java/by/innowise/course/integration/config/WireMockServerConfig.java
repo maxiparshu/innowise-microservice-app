@@ -6,7 +6,6 @@ import org.springframework.cloud.client.DefaultServiceInstance;
 import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;
 import org.springframework.cloud.loadbalancer.support.ServiceInstanceListSuppliers;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 

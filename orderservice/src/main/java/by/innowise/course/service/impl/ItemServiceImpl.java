@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ItemServiceImpl implements ItemService {
     private final ItemRepository itemRepository;
     private final ItemMapper itemMapper;
+    private static final String NOT_FOUND_ITEM_MESSAGE = "Item with id %d not found";
 
     @Override
     @Transactional
@@ -37,7 +38,7 @@ public class ItemServiceImpl implements ItemService {
     public ItemResponseDto getById(Long id) {
         Item item = itemRepository.findById(id)
                 .orElseThrow(() ->
-                        new EntityNotFoundException("Item with id %d not found".formatted(id))
+                        new EntityNotFoundException(NOT_FOUND_ITEM_MESSAGE.formatted(id))
                 );
 
         return itemMapper.toResponseDto(item);
@@ -46,14 +47,14 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public Page<ItemResponseDto> getItems(ItemFilterDto filterDto, Pageable pageable) {
         Specification<Item> specification = Specification.where(
-                ItemSpecification.containName(
-                        filterDto.getName()
-                ))
+                        ItemSpecification.containName(
+                                filterDto.getName()
+                        ))
                 .and(
-                ItemSpecification.betweenPrice(
-                        filterDto.getMinPrice(),
-                        filterDto.getMaxPrice()
-                ));
+                        ItemSpecification.betweenPrice(
+                                filterDto.getMinPrice(),
+                                filterDto.getMaxPrice()
+                        ));
 
         return itemRepository.findAll(specification, pageable)
                 .map(itemMapper::toResponseDto);
@@ -63,9 +64,7 @@ public class ItemServiceImpl implements ItemService {
     @Transactional
     public ItemResponseDto update(Long id, ItemRequestDto requestDto) {
         Item item = itemRepository.findById(id)
-                .orElseThrow(() ->
-                        new EntityNotFoundException("Item with id %d not found".formatted(id))
-                );
+                .orElseThrow(() -> new EntityNotFoundException(NOT_FOUND_ITEM_MESSAGE.formatted(id)));
 
         item.setName(requestDto.getName());
         item.setPrice(requestDto.getPrice());
@@ -80,9 +79,7 @@ public class ItemServiceImpl implements ItemService {
     public void delete(Long id) {
         Item item = itemRepository.findById(id)
                 .orElseThrow(() ->
-                        new EntityNotFoundException(
-                                "Item with id %d not found".formatted(id)
-                        ));
+                        new EntityNotFoundException(NOT_FOUND_ITEM_MESSAGE.formatted(id)));
 
         itemRepository.delete(item);
     }

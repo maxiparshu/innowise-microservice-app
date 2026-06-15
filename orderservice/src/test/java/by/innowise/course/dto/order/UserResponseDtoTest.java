@@ -3,6 +3,7 @@ package by.innowise.course.dto.order;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,7 +13,7 @@ class UserResponseDtoTest {
     void gettersAndSettersShouldWork() {
         UserResponseDto dto = new UserResponseDto();
 
-        LocalDate birthDate = LocalDate.of(2000, 1, 1);
+        LocalDate birthDate = LocalDate.of(2000, Month.JANUARY, 1);
 
         dto.setName("John");
         dto.setSurname("Doe");
@@ -27,7 +28,7 @@ class UserResponseDtoTest {
 
     @Test
     void equalsAndHashCodeShouldWork() {
-        LocalDate birthDate = LocalDate.of(2000, 1, 1);
+        LocalDate birthDate = LocalDate.of(2000, Month.JANUARY, 1);
 
         UserResponseDto dto1 = new UserResponseDto();
         dto1.setName("John");
@@ -64,7 +65,7 @@ class UserResponseDtoTest {
 
         dto.setName("John");
         dto.setSurname("Doe");
-        dto.setBirthDate(LocalDate.of(2000, 1, 1));
+        dto.setBirthDate(LocalDate.of(2000, Month.JANUARY, 1));
         dto.setEmail("john@test.com");
 
         String result = dto.toString();

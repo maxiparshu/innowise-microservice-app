@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -16,8 +17,8 @@ class ItemResponseDtoTest {
     void gettersAndSettersShouldWork() {
         ItemResponseDto dto = new ItemResponseDto();
 
-        LocalDateTime createdAt = LocalDateTime.of(2025, 1, 1, 10, 0);
-        LocalDateTime updatedAt = LocalDateTime.of(2025, 1, 2, 12, 0);
+        LocalDateTime createdAt = LocalDateTime.of(2025, Month.JANUARY, 1, 10, 0);
+        LocalDateTime updatedAt = LocalDateTime.of(2025, Month.JANUARY, 2, 12, 0);
 
         dto.setId(1L);
         dto.setName("Phone");
@@ -34,8 +35,8 @@ class ItemResponseDtoTest {
 
     @Test
     void equalsAndHashCodeShouldWork() {
-        LocalDateTime createdAt = LocalDateTime.of(2025, 1, 1, 10, 0);
-        LocalDateTime updatedAt = LocalDateTime.of(2025, 1, 2, 12, 0);
+        LocalDateTime createdAt = LocalDateTime.of(2025, Month.JANUARY, 1, 10, 0);
+        LocalDateTime updatedAt = LocalDateTime.of(2025, Month.JANUARY, 2, 12, 0);
 
         ItemResponseDto dto1 = new ItemResponseDto();
         dto1.setId(1L);

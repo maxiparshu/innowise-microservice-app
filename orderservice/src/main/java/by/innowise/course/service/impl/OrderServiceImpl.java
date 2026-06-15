@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
     private final UserMapper userMapper;
     private final UserFacade userFacade;
 
-    private static final String NOT_FOUND_ORDER_MESSAGE = "Order not found: ";
+    private static final String NOT_FOUND_ORDER_MESSAGE = "Order with id %d not found";
 
     @Override
     @Transactional
@@ -69,7 +69,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderResponseDto getById(Long id) {
 
         Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(NOT_FOUND_ORDER_MESSAGE + id));
+                .orElseThrow(() -> new EntityNotFoundException(NOT_FOUND_ORDER_MESSAGE.formatted(id)));
 
         OrderUserDto user = userFacade.getUser(order.getUserId());
         OrderResponseDto responseDto = orderMapper.toResponseDto(order);
@@ -136,7 +136,7 @@ public class OrderServiceImpl implements OrderService {
     ) {
 
         Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(NOT_FOUND_ORDER_MESSAGE + id));
+                .orElseThrow(() -> new EntityNotFoundException(NOT_FOUND_ORDER_MESSAGE.formatted(id)));
 
         order.setStatus(requestDto.getStatus());
         order.getOrderItems().clear();
@@ -154,7 +154,7 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public void delete(Long id) {
         Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(NOT_FOUND_ORDER_MESSAGE + id));
+                .orElseThrow(() -> new EntityNotFoundException(NOT_FOUND_ORDER_MESSAGE.formatted(id)));
 
         orderRepository.delete(order);
     }

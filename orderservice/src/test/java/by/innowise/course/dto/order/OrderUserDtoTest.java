@@ -1,7 +1,6 @@
 package by.innowise.course.dto.order;
 
 
-import by.innowise.course.dto.order.OrderUserDto;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

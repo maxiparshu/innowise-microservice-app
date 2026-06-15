@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.Specification;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Month;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -45,7 +46,7 @@ class OrderSpecificationTest {
         Path<LocalDateTime> createdAt = mock(Path.class);
         Predicate predicate = mock(Predicate.class);
 
-        LocalDate end = LocalDate.of(2025, 1, 31);
+        LocalDate end = LocalDate.of(2025, Month.JANUARY, 31);
         LocalDateTime expected = end.atTime(LocalTime.MAX);
 
         when(root.<LocalDateTime>get("createdAt")).thenReturn(createdAt);
@@ -69,7 +70,7 @@ class OrderSpecificationTest {
         Path<LocalDateTime> createdAt = mock(Path.class);
         Predicate predicate = mock(Predicate.class);
 
-        LocalDate start = LocalDate.of(2025, 1, 1);
+        LocalDate start = LocalDate.of(2025, Month.JANUARY, 1);
         LocalDateTime expected = start.atStartOfDay();
 
         when(root.<LocalDateTime>get("createdAt")).thenReturn(createdAt);
@@ -93,8 +94,8 @@ class OrderSpecificationTest {
         Path<LocalDateTime> createdAt = mock(Path.class);
         Predicate predicate = mock(Predicate.class);
 
-        LocalDate start = LocalDate.of(2025, 1, 1);
-        LocalDate end = LocalDate.of(2025, 1, 31);
+        LocalDate start = LocalDate.of(2025, Month.JANUARY, 1);
+        LocalDate end = LocalDate.of(2025, Month.JANUARY, 31);
 
         LocalDateTime startDateTime = start.atStartOfDay();
         LocalDateTime endDateTime = end.atTime(LocalTime.MAX);
