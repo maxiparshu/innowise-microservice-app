@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,9 +25,9 @@ class OrderResponseDtoTest {
         OrderItemResponseDto item = new OrderItemResponseDto();
         item.setItemId(1L);
 
-        LocalDateTime createdAt = LocalDateTime.of(2025, 1, 1, 10, 0);
+        LocalDateTime createdAt = LocalDateTime.of(2025, Month.JANUARY, 1, 10, 0);
 
-        LocalDateTime updatedAt = LocalDateTime.of(2025, 1, 2, 10, 0);
+        LocalDateTime updatedAt = LocalDateTime.of(2025, Month.JANUARY, 2, 10, 0);
 
         OrderResponseDto dto = new OrderResponseDto();
 
@@ -54,7 +55,7 @@ class OrderResponseDtoTest {
         UserResponseDto user = new UserResponseDto();
         user.setName("John");
         user.setSurname("Doe");
-        user.setBirthDate(LocalDate.of(2000, 1, 1));
+        user.setBirthDate(LocalDate.of(2000, Month.JANUARY, 1));
         user.setEmail("john@test.com");
 
         OrderResponseDto dto1 = new OrderResponseDto();
