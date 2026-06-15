@@ -164,7 +164,7 @@ class AuthServiceTest {
         refreshToken.setToken("refreshToken");
         refreshToken.setUserId(1L);
         refreshToken.setRevoked(false);
-        refreshToken.setExpiresAt(LocalDateTime.now().plusDays(1));
+        refreshToken.setExpiresAt(LocalDateTime.of(2027, 6, 15, 10, 0));
 
         when(refreshTokenRepository.findByToken("refreshToken"))
                 .thenReturn(Optional.of(refreshToken));
@@ -203,7 +203,7 @@ class AuthServiceTest {
 
         RefreshToken refreshToken = new RefreshToken();
         refreshToken.setRevoked(false);
-        refreshToken.setExpiresAt(LocalDateTime.now().minusDays(1));
+        refreshToken.setExpiresAt(LocalDateTime.of(2026, 6, 15, 10, 0));
 
         when(refreshTokenRepository.findByToken("refreshToken"))
                 .thenReturn(Optional.of(refreshToken));

@@ -156,7 +156,7 @@ class AuthControllerIntegrationTest {
         refreshToken.setUserId(1L);
         refreshToken.setToken("refresh-token");
         refreshToken.setRevoked(true);
-        refreshToken.setExpiresAt(LocalDateTime.now().plusDays(1));
+        refreshToken.setExpiresAt(LocalDateTime.of(2027, 6, 15, 10, 0));
 
         RefreshTokenRequest request = new RefreshTokenRequest();
         request.setRefreshToken("refresh-token");
@@ -229,7 +229,7 @@ class AuthControllerIntegrationTest {
         refreshToken.setUserId(1L);
         refreshToken.setToken("refresh-token");
         refreshToken.setRevoked(false);
-        refreshToken.setExpiresAt(LocalDateTime.now().plusDays(1));
+        refreshToken.setExpiresAt(LocalDateTime.of(2027, 6, 15, 10, 0));
 
         refreshTokenRepository.save(refreshToken);
 
