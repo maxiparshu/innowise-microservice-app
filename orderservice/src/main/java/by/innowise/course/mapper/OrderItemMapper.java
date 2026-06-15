@@ -1,6 +1,5 @@
 package by.innowise.course.mapper;
 
-import by.innowise.course.dto.orderitem.OrderItemRequestDto;
 import by.innowise.course.dto.orderitem.OrderItemResponseDto;
 import by.innowise.course.entity.OrderItem;
 import org.mapstruct.Mapper;

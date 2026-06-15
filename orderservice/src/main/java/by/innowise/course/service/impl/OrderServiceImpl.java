@@ -1,11 +1,11 @@
 package by.innowise.course.service.impl;
 
-import by.innowise.course.client.OrderUserDto;
-import by.innowise.course.client.UserFacade;
 import by.innowise.course.dto.order.OrderFilterDto;
 import by.innowise.course.dto.order.OrderRequestDto;
 import by.innowise.course.dto.order.OrderResponseDto;
 import by.innowise.course.dto.order.OrderUpdateRequestDto;
+import by.innowise.course.dto.order.OrderUserDto;
+import by.innowise.course.dto.order.UserResponseDto;
 import by.innowise.course.dto.orderitem.OrderItemRequestDto;
 import by.innowise.course.entity.Item;
 import by.innowise.course.entity.Order;
@@ -15,6 +15,7 @@ import by.innowise.course.mapper.UserMapper;
 import by.innowise.course.repository.ItemRepository;
 import by.innowise.course.repository.OrderRepository;
 import by.innowise.course.service.OrderService;
+import by.innowise.course.service.UserFacade;
 import by.innowise.course.specification.OrderSpecification;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -38,6 +41,8 @@ public class OrderServiceImpl implements OrderService {
     private final OrderMapper orderMapper;
     private final UserMapper userMapper;
     private final UserFacade userFacade;
+
+    private static final String NOT_FOUND_ORDER_MESSAGE = "Order not found: ";
 
     @Override
     @Transactional
@@ -64,9 +69,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderResponseDto getById(Long id) {
 
         Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(
-                        "Order not found: " + id
-                ));
+                .orElseThrow(() -> new EntityNotFoundException(NOT_FOUND_ORDER_MESSAGE + id));
 
         OrderUserDto user = userFacade.getUser(order.getUserId());
         OrderResponseDto responseDto = orderMapper.toResponseDto(order);
@@ -90,13 +93,20 @@ public class OrderServiceImpl implements OrderService {
                         filterDto.getStatuses()
                 ));
 
+        Map<Long, UserResponseDto> userCache = new HashMap<>();
+
         return orderRepository.findAll(spec, pageable)
                 .map(order -> {
                     OrderResponseDto dto = orderMapper.toResponseDto(order);
 
-                    OrderUserDto user = userFacade.getUser(dto.getUserId());
-                    dto.setUser(userMapper.toResponseDto(user));
+                    UserResponseDto user = userCache.computeIfAbsent(
+                            dto.getUserId(),
+                            userId -> userMapper.toResponseDto(
+                                    userFacade.getUser(userId)
+                            )
+                    );
 
+                    dto.setUser(user);
                     return dto;
                 });
     }
@@ -126,9 +136,7 @@ public class OrderServiceImpl implements OrderService {
     ) {
 
         Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(
-                        "Order not found: " + id
-                ));
+                .orElseThrow(() -> new EntityNotFoundException(NOT_FOUND_ORDER_MESSAGE + id));
 
         order.setStatus(requestDto.getStatus());
         order.getOrderItems().clear();
@@ -146,22 +154,21 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public void delete(Long id) {
         Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(
-                        "Order not found: " + id
-                ));
+                .orElseThrow(() -> new EntityNotFoundException(NOT_FOUND_ORDER_MESSAGE + id));
 
         orderRepository.delete(order);
     }
 
     private void setOrders(List<OrderItemRequestDto> requestDto, Order order) {
+        if (requestDto == null) {
+            return;
+        }
+
         BigDecimal total = BigDecimal.ZERO;
 
         for (OrderItemRequestDto dto : requestDto) {
-
             Item item = itemRepository.findById(dto.getItemId())
-                    .orElseThrow(() -> new EntityNotFoundException(
-                            "Item not found: " + dto.getItemId()
-                    ));
+                    .orElseThrow(() -> new EntityNotFoundException("Item not found: " + dto.getItemId()));
 
             OrderItem orderItem = new OrderItem();
             orderItem.setOrder(order);

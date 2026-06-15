@@ -24,25 +24,20 @@ class ItemSpecificationTest {
 
     @Test
     void containNameShouldReturnNullWhenNameIsNull() {
-        CriteriaBuilder cb = mock(CriteriaBuilder.class);
+        Specification<Item> specification = ItemSpecification.containName(null);
+
         Root<Item> root = mock(Root.class);
-        Predicate predicate = mock(Predicate.class);
-
-        when(cb.conjunction()).thenReturn(predicate);
-
-        Specification<Item> specification = ItemSpecification.betweenPrice(null, null);
+        CriteriaBuilder cb = mock(CriteriaBuilder.class);
 
         Predicate result = specification.toPredicate(root, null, cb);
 
-        assertNotNull(result);
-        verify(cb).conjunction();
+        assertNull(result);
     }
 
     @Test
     void containNameShouldReturnNullWhenNameIsBlank() {
 
-        Specification<Item> specification =
-                ItemSpecification.containName(" ");
+        Specification<Item> specification = ItemSpecification.containName(" ");
 
         Root<Item> root = mock(Root.class);
         CriteriaBuilder cb = mock(CriteriaBuilder.class);
@@ -147,8 +142,7 @@ class ItemSpecificationTest {
                 BigDecimal.valueOf(100)))
                 .thenReturn(predicate);
 
-        Specification<Item> specification =
-                ItemSpecification.betweenPrice(lowEdge, topEdge);
+        Specification<Item> specification = ItemSpecification.betweenPrice(lowEdge, topEdge);
 
         Predicate result = specification.toPredicate(root, null, cb);
 

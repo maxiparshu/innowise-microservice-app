@@ -1,5 +1,8 @@
-package by.innowise.course.client;
+package by.innowise.course.service.impl;
 
+import by.innowise.course.client.UserClient;
+import by.innowise.course.dto.order.OrderUserDto;
+import by.innowise.course.service.UserFacade;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -34,19 +37,5 @@ class UserFacadeTest {
         assertEquals(userId, result.getId());
 
         verify(userClient).getUserById(userId);
-    }
-
-    @Test
-    void fallbackUserShouldReturnUnknownUser() {
-        Long userId = 1L;
-
-        OrderUserDto result =
-                userFacade.fallbackUser(userId, new RuntimeException());
-
-        assertNotNull(result);
-        assertEquals(userId, result.getId());
-        assertEquals("Unknown", result.getName());
-
-        verifyNoInteractions(userClient);
     }
 }

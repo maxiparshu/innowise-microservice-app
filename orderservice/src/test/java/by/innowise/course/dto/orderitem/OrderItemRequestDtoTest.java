@@ -56,7 +56,7 @@ class OrderItemRequestDtoTest {
         assertNotEquals(dto1.hashCode(), dto3.hashCode());
 
         assertEquals(dto1, dto1);
-        assertNotEquals(dto1, null);
+        assertNotEquals(null, dto1);
         assertNotEquals(dto1, new Object());
     }
 

@@ -1,7 +1,7 @@
 package by.innowise.course.service.impl;
 
-import by.innowise.course.client.OrderUserDto;
-import by.innowise.course.client.UserFacade;
+import by.innowise.course.dto.order.OrderUserDto;
+import by.innowise.course.service.UserFacade;
 import by.innowise.course.dto.order.OrderFilterDto;
 import by.innowise.course.dto.order.OrderRequestDto;
 import by.innowise.course.dto.order.OrderResponseDto;

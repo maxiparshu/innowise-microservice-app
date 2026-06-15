@@ -1,23 +1,24 @@
 package by.innowise.course.integration;
 
 
-import by.innowise.course.client.OrderUserDto;
-import by.innowise.course.client.UserClient;
 import by.innowise.course.dto.order.OrderRequestDto;
 import by.innowise.course.dto.order.OrderUpdateRequestDto;
 import by.innowise.course.dto.orderitem.OrderItemRequestDto;
 import by.innowise.course.entity.Item;
 import by.innowise.course.entity.Order;
 import by.innowise.course.entity.OrderStatus;
+import by.innowise.course.integration.config.WireMockServerConfig;
 import by.innowise.course.repository.ItemRepository;
 import by.innowise.course.repository.OrderRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.tomakehurst.wiremock.WireMockServer;
+import com.github.tomakehurst.wiremock.client.WireMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
@@ -33,7 +34,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -44,6 +44,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
+@Import(WireMockServerConfig.class)
 @ActiveProfiles("test")
 class OrderControllerIntegrationTest {
 
@@ -76,22 +77,31 @@ class OrderControllerIntegrationTest {
     @Autowired
     private OrderRepository orderRepository;
 
-    @MockBean
-    private UserClient userClient;
+    @Autowired
+    private WireMockServer wireMockServer;
 
     @BeforeEach
     void setUp() {
         orderRepository.deleteAll();
         itemRepository.deleteAll();
 
-        OrderUserDto user = new OrderUserDto();
-        user.setId(1L);
-        user.setName("John");
-        user.setSurname("Doe");
-        user.setEmail("john@test.com");
+        wireMockServer.resetAll();
 
-        when(userClient.getUserById(1L)).thenReturn(user);
+        wireMockServer.stubFor(
+                WireMock.get(WireMock.urlEqualTo("/api/v1/users/1"))
+                        .willReturn(
+                                WireMock.okJson("""
+                                        {
+                                          "id": 1,
+                                          "name": "John",
+                                          "surname": "Doe",
+                                          "email": "john@test.com"
+                                        }
+                                        """)
+                        )
+        );
     }
+
     @Test
     @WithMockUser(authorities = "ADMIN")
     void createShouldSaveOrder() throws Exception {
@@ -116,9 +126,8 @@ class OrderControllerIntegrationTest {
         mockMvc.perform(post("/api/v1/orders")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.userId").value(1))
-                .andExpect(jsonPath("$.status").value("CREATED"));
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.userId").value(1));
 
         assertEquals(1, orderRepository.count());
 
@@ -129,6 +138,7 @@ class OrderControllerIntegrationTest {
                 new BigDecimal("200.00")
                         .compareTo(order.getTotalPrice()));
     }
+
     @Test
     @WithMockUser(authorities = {"ADMIN"})
     void getByIdShouldReturnOrder() throws Exception {
@@ -151,7 +161,19 @@ class OrderControllerIntegrationTest {
                 .andExpect(status().isBadRequest());
         mockMvc.perform(get("/api/v1/orders/222"))
                 .andExpect(status().isNotFound());
+
+        order.setUserId(2L);
+        order = orderRepository.save(order);
+
+        mockMvc.perform(get("/api/v1/orders/{id}", order.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.userId").value(2))
+                .andExpect(jsonPath("$.user.name").value("Unknown"))
+                .andExpect(jsonPath("$.user.surname").value("Unknown"))
+                .andExpect(jsonPath("$.user.email").value("Unknown"));
+
     }
+
     @Test
     @WithMockUser(authorities = "ADMIN")
     void getOrdersShouldReturnPage() throws Exception {
@@ -167,6 +189,7 @@ class OrderControllerIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content.length()").value(1));
     }
+
     @Test
     @WithMockUser(authorities = "ADMIN")
     void getOrdersByUserIdShouldReturnOrders() throws Exception {
@@ -213,10 +236,11 @@ class OrderControllerIntegrationTest {
                         .value("SHIPPED"));
 
         Order updated = orderRepository.findById(order.getId())
-                        .orElseThrow();
+                .orElseThrow();
 
         assertEquals(OrderStatus.SHIPPED, updated.getStatus());
     }
+
     @Test
     @WithMockUser(authorities = "ADMIN")
     void deleteShouldRemoveOrder() throws Exception {

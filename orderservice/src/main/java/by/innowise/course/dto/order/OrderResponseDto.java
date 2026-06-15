@@ -1,6 +1,5 @@
 package by.innowise.course.dto.order;
 
-import by.innowise.course.client.OrderUserDto;
 import by.innowise.course.dto.orderitem.OrderItemResponseDto;
 import by.innowise.course.entity.OrderStatus;
 import lombok.Data;

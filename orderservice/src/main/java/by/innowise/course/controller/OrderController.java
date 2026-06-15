@@ -10,6 +10,7 @@ import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -37,7 +38,7 @@ public class OrderController {
     public ResponseEntity<OrderResponseDto> create(
             @Valid @RequestBody OrderRequestDto requestDto
     ) {
-        return ResponseEntity.ok(orderService.create(requestDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.create(requestDto));
     }
 
     @GetMapping("/{id}")

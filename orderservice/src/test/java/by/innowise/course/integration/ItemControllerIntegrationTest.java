@@ -80,7 +80,7 @@ class ItemControllerIntegrationTest {
         mockMvc.perform(post("/api/v1/items")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.name").value("Phone"))
                 .andExpect(jsonPath("$.price").value(100));
 

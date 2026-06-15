@@ -1,5 +1,7 @@
-package by.innowise.course.client;
+package by.innowise.course.service;
 
+import by.innowise.course.dto.order.OrderUserDto;
+import by.innowise.course.client.UserClient;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,10 +17,12 @@ public class UserFacade {
         return userClient.getUserById(userId);
     }
 
-    public OrderUserDto fallbackUser(Long userId, Throwable ex) {
+    OrderUserDto fallbackUser(Long userId, Throwable ignored) {
         OrderUserDto dto = new OrderUserDto();
         dto.setId(userId);
         dto.setName("Unknown");
+        dto.setSurname("Unknown");
+        dto.setEmail("Unknown");
         return dto;
     }
 }

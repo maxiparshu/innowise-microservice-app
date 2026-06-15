@@ -1,4 +1,4 @@
-package by.innowise.course.client;
+package by.innowise.course.dto.order;
 
 import lombok.Data;
 

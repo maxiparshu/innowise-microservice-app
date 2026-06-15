@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -22,7 +23,7 @@ public class GlobalExceptionHandler {
     ) {
 
         return ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now())
+                .timestamp(LocalDateTime.now(ZoneOffset.UTC))
                 .status(HttpStatus.NOT_FOUND.value())
                 .error(HttpStatus.NOT_FOUND.getReasonPhrase())
                 .message(ex.getMessage())
@@ -31,15 +32,15 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(FeignException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
+    @ResponseStatus(HttpStatus.BAD_GATEWAY)
     public ErrorResponseDto handleFeignException(
             FeignException ex
     ) {
 
         return ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now())
-                .status(HttpStatus.CONFLICT.value())
-                .error(HttpStatus.CONFLICT.getReasonPhrase())
+                .timestamp(LocalDateTime.now(ZoneOffset.UTC))
+                .status(HttpStatus.BAD_GATEWAY.value())
+                .error(HttpStatus.BAD_GATEWAY.getReasonPhrase())
                 .message(ex.getMessage())
                 .build();
     }
@@ -61,7 +62,7 @@ public class GlobalExceptionHandler {
                 .orElse("Validation error");
 
         return ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now())
+                .timestamp(LocalDateTime.now(ZoneOffset.UTC))
                 .status(HttpStatus.BAD_REQUEST.value())
                 .error(HttpStatus.BAD_REQUEST.getReasonPhrase())
                 .message(message)
@@ -74,7 +75,7 @@ public class GlobalExceptionHandler {
             ConstraintViolationException exception
     ) {
         return ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now())
+                .timestamp(LocalDateTime.now(ZoneOffset.UTC))
                 .status(HttpStatus.BAD_REQUEST.value())
                 .error(HttpStatus.BAD_REQUEST.getReasonPhrase())
                 .message(exception.getMessage())
@@ -87,7 +88,7 @@ public class GlobalExceptionHandler {
             AccessDeniedException ex
     ) {
         return ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now())
+                .timestamp(LocalDateTime.now(ZoneOffset.UTC))
                 .status(HttpStatus.FORBIDDEN.value())
                 .error(HttpStatus.FORBIDDEN.getReasonPhrase())
                 .message(ex.getMessage())
@@ -98,7 +99,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponseDto handleAll(Exception ex) {
         return ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now())
+                .timestamp(LocalDateTime.now(ZoneOffset.UTC))
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .error(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())
                 .message("Internal server error")
