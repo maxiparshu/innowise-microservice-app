@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.UUID;
 
 @Service
@@ -72,7 +73,7 @@ public class AuthServiceImpl implements AuthService {
         if (refreshToken.getRevoked()) {
             throw new RefreshTokenException("Refresh token revoked");
         }
-        if (refreshToken.getExpiresAt().isBefore(LocalDateTime.now())) {
+        if (refreshToken.getExpiresAt().isBefore(LocalDateTime.now(ZoneOffset.UTC))) {
             throw new RefreshTokenException("Refresh token expired");
         }
 
@@ -126,7 +127,7 @@ public class AuthServiceImpl implements AuthService {
         RefreshToken refreshToken = new RefreshToken();
         refreshToken.setUserId(user.getUserId());
         refreshToken.setToken(refreshTokenValue);
-        refreshToken.setExpiresAt(LocalDateTime.now().plusDays(7));
+        refreshToken.setExpiresAt(LocalDateTime.now(ZoneOffset.UTC).plusDays(7));
         refreshToken.setRevoked(false);
 
         refreshTokenRepository.save(refreshToken);

@@ -6,6 +6,8 @@ build
 src
 !userservice/src
 !authservice/src
+!orderservice/src
+!eurekaserver/src
 .idea
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/

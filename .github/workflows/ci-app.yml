@@ -31,11 +31,14 @@ jobs:
       - name: Clean authservice
         run: ./gradlew :authservice:clean
 
+      - name: Clean orderservice
+        run: ./gradlew :orderservice:clean
+
       - name: test
         run: ./gradlew test
 
       - name: SonarQube
-        run: ./gradlew :userservice:sonar :authservice:sonar
+        run: ./gradlew :userservice:sonar :authservice:sonar :orderservice:sonar
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
@@ -47,6 +50,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Docker build eureka
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/eurekaserver:latest -f eurekaserver/Dockerfile .
+
+      - name: Docker push eureka
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/eurekaserver:latest
+
       - name: Docker build
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/userservice:latest -f userservice/Dockerfile .
       - name: Docker push
@@ -57,3 +66,9 @@ jobs:
 
       - name: Docker push auth
         run: docker push ${{ secrets.DOCKER_USERNAME }}/authservice:latest
+
+      - name: Docker build order
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/orderservice:latest -f orderservice/Dockerfile .
+
+      - name: Docker push order
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/orderservice:latest

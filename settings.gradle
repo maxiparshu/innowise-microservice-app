@@ -1,3 +1,6 @@
 rootProject.name = 'microservice'
 include 'userservice'
 include 'authservice'
+include 'orderservice'
+include 'eurekaserver'
+

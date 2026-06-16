@@ -37,7 +37,7 @@ class ErrorResponseDtoTest {
 
     private static Stream<Arguments> equalObjectsProvider() {
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.of(2027, 6, 15, 10, 0);
 
         ErrorResponseDto first = createError(
                 now,
@@ -60,7 +60,7 @@ class ErrorResponseDtoTest {
 
     private static Stream<Arguments> notEqualObjectsProvider() {
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.of(2027, 6, 15, 10, 0);
 
         ErrorResponseDto base = createError(
                 now,
