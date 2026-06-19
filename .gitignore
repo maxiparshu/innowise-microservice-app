@@ -8,6 +8,7 @@ src
 !authservice/src
 !orderservice/src
 !eurekaserver/src
+!gateway/src
 .idea
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/

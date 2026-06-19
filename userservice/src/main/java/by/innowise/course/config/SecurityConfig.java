@@ -1,6 +1,5 @@
 package by.innowise.course.config;
 
-import by.innowise.course.security.JwtParseFilter;
 import by.innowise.course.security.UserContextFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +16,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-    private final JwtParseFilter jwtParseFilter;
     private final UserContextFilter userContextFilter;
 
     @Bean
@@ -38,13 +36,8 @@ public class SecurityConfig {
                 )
 
                 .addFilterBefore(
-                        jwtParseFilter,
-                        UsernamePasswordAuthenticationFilter.class
-                )
-
-                .addFilterAfter(
                         userContextFilter,
-                        JwtParseFilter.class
+                        UsernamePasswordAuthenticationFilter.class
                 )
 
                 .build();

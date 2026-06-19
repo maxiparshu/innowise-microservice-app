@@ -15,9 +15,6 @@ spring:
     change-log: classpath:db/changelog/db.create-tables.yaml
     enabled: true
 
-jwt:
-  secret: ${JWT_SECRET}
-
 resilience4j:
   circuitbreaker:
     instances:

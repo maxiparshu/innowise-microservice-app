@@ -4,6 +4,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Component
+@Slf4j
 public class UserContextFilter extends OncePerRequestFilter {
 
     @Override
@@ -28,13 +30,12 @@ public class UserContextFilter extends OncePerRequestFilter {
 
         Object roleAttr =
                 request.getAttribute("X-Role");
-
         if (userIdAttr != null && roleAttr != null) {
 
             Long userId = (Long) userIdAttr;
 
             String role = (String) roleAttr;
-
+            log.warn(role + " " + userId);
             var authorities = List.of(
                     new SimpleGrantedAuthority(role)
             );
