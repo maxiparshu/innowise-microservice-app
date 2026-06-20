@@ -25,19 +25,15 @@ public class UserContextFilter extends OncePerRequestFilter {
             FilterChain filterChain
     ) throws ServletException, IOException {
 
-        Object userIdAttr =
-                request.getAttribute("X-User-Id");
+        String userIdHeader = request.getHeader("X-User-Id");
+        String roleHeader = request.getHeader("X-User-Role");
+        log.warn(roleHeader + " " + userIdHeader);
+        if (userIdHeader != null && roleHeader != null) {
 
-        Object roleAttr =
-                request.getAttribute("X-Role");
-        if (userIdAttr != null && roleAttr != null) {
+            Long userId = Long.parseLong(userIdHeader);
 
-            Long userId = (Long) userIdAttr;
-
-            String role = (String) roleAttr;
-            log.warn(role + " " + userId);
             var authorities = List.of(
-                    new SimpleGrantedAuthority(role)
+                    new SimpleGrantedAuthority(roleHeader)
             );
 
             UsernamePasswordAuthenticationToken auth =
