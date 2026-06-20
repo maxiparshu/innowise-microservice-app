@@ -11,14 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class UserContextFilterTest {
 
@@ -35,8 +29,8 @@ class UserContextFilterTest {
     @Test
     void shouldSetAuthenticationWhenAttributesPresent() throws Exception {
 
-        when(request.getAttribute("X-User-Id")).thenReturn(1L);
-        when(request.getAttribute("X-Role")).thenReturn("ADMIN");
+        when(request.getHeader("X-User-Id")).thenReturn("1");
+        when(request.getHeader("X-User-Role")).thenReturn("ADMIN");
 
         filter.doFilterInternal(request, response, chain);
 
@@ -57,8 +51,8 @@ class UserContextFilterTest {
     @Test
     void shouldNotSetAuthenticationWhenUserIdMissing() throws Exception {
 
-        when(request.getAttribute("X-User-Id")).thenReturn(null);
-        when(request.getAttribute("X-Role")).thenReturn("ADMIN");
+        when(request.getHeader("X-User-Id")).thenReturn(null);
+        when(request.getHeader("X-User-Role")).thenReturn("ADMIN");
 
         filter.doFilterInternal(request, response, chain);
 
@@ -70,8 +64,8 @@ class UserContextFilterTest {
     @Test
     void shouldNotSetAuthenticationWhenRoleMissing() throws Exception {
 
-        when(request.getAttribute("X-User-Id")).thenReturn(1L);
-        when(request.getAttribute("X-Role")).thenReturn(null);
+        when(request.getHeader("X-User-Id")).thenReturn("1");
+        when(request.getHeader("X-User-Role")).thenReturn(null);
 
         filter.doFilterInternal(request, response, chain);
 
@@ -84,7 +78,7 @@ class UserContextFilterTest {
     void shouldNotSetAuthenticationWhenBothMissing() throws Exception {
 
         when(request.getAttribute("X-User-Id")).thenReturn(null);
-        when(request.getAttribute("X-Role")).thenReturn(null);
+        when(request.getAttribute("X-User-Role")).thenReturn(null);
 
         filter.doFilterInternal(request, response, chain);
 
@@ -95,8 +89,8 @@ class UserContextFilterTest {
     @Test
     void shouldCorrectlyMapRoleToAuthority() throws Exception {
 
-        when(request.getAttribute("X-User-Id")).thenReturn(99L);
-        when(request.getAttribute("X-Role")).thenReturn("USER");
+        when(request.getHeader("X-User-Id")).thenReturn("99");
+        when(request.getHeader("X-User-Role")).thenReturn("USER");
 
         filter.doFilterInternal(request, response, chain);
 
