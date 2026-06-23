@@ -77,8 +77,8 @@ class UserContextFilterTest {
     @Test
     void shouldNotSetAuthenticationWhenBothMissing() throws Exception {
 
-        when(request.getAttribute("X-User-Id")).thenReturn(null);
-        when(request.getAttribute("X-User-Role")).thenReturn(null);
+        when(request.getHeader("X-User-Id")).thenReturn(null);
+        when(request.getHeader("X-User-Role")).thenReturn(null);
 
         filter.doFilterInternal(request, response, chain);
 

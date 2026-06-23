@@ -70,12 +70,10 @@ services:
 
     env_file:
       ./gateway/.docker.env
-
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
     ports:
       - "8066:8066"
-
+    depends_on:
+      - eureka-server
 
   user-service:
     build:

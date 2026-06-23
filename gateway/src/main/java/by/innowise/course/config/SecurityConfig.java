@@ -1,4 +1,4 @@
-package by.innowise.course.security;
+package by.innowise.course.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

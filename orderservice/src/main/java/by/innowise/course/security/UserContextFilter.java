@@ -27,7 +27,6 @@ public class UserContextFilter extends OncePerRequestFilter {
 
         String userIdHeader = request.getHeader("X-User-Id");
         String roleHeader = request.getHeader("X-User-Role");
-        log.warn(roleHeader + " " + userIdHeader);
         if (userIdHeader != null && roleHeader != null) {
 
             Long userId = Long.parseLong(userIdHeader);
