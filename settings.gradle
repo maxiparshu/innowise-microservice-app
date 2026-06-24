@@ -3,4 +3,5 @@ include 'userservice'
 include 'authservice'
 include 'orderservice'
 include 'eurekaserver'
+include 'gateway'
 

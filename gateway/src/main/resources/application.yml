@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      routes:
+        - id: auth-public
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/login, /api/auth/register
+
+        - id: auth-protected
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/logout, /api/auth/refresh, /api/auth/validate
+          filters:
+            - AuthenticationFilter
+
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/api/v1/items/**, /api/v1/orders/**
+          filters:
+            - AuthenticationFilter
+
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/v1/cards/**, /api/v1/users/**
+          filters:
+            - AuthenticationFilter
+
+jwt:
+  secret: ${JWT_SECRET}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER}
+
+server:
+  port: 8066
+

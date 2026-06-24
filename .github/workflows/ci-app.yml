@@ -56,6 +56,11 @@ jobs:
       - name: Docker push eureka
         run: docker push ${{ secrets.DOCKER_USERNAME }}/eurekaserver:latest
 
+      - name: Docker build api-gateway
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/api-gateway:latest -f api-gateway/Dockerfile .
+
+      - name: Docker push api-gateway
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/api-gateway:latest
       - name: Docker build
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/userservice:latest -f userservice/Dockerfile .
       - name: Docker push

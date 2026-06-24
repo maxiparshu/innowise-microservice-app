@@ -61,6 +61,19 @@ services:
     ports:
       - "8800:8800"
 
+  api-gateway:
+    build:
+      context: .
+      dockerfile: gateway/Dockerfile
+
+    container_name: api-gateway
+
+    env_file:
+      ./gateway/.docker.env
+    ports:
+      - "8066:8066"
+    depends_on:
+      - eureka-server
 
   user-service:
     build:
@@ -75,6 +88,7 @@ services:
     depends_on:
       - userservice-postgres
       - redis
+      - eureka-server
 
     environment:
       SPRING_PROFILES_ACTIVE: docker
@@ -93,6 +107,7 @@ services:
 
     depends_on:
       - authservice-postgres
+      - eureka-server
 
     environment:
       SPRING_PROFILES_ACTIVE: docker
@@ -111,6 +126,7 @@ services:
 
     depends_on:
       - orderservice-postgres
+      - eureka-server
 
     environment:
       SPRING_PROFILES_ACTIVE: docker
